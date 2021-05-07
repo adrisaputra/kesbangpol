@@ -83,7 +83,7 @@
 				<!-- small box -->
 					<div class="small-box bg-red">
 						<div class="inner">
-						<h3>{{ $pengambilan_belum_di_proses }}</h3>
+						<h3></h3>
 
 						<p>Pengambilan Belum Di Proses</p>
 						</div>
@@ -98,7 +98,7 @@
 					<!-- small box -->
 					<div class="small-box bg-green">
 						<div class="inner">
-						<h3>{{ $pengambilan_di_proses }}</h3>
+						<h3></h3>
 
 						<p>Pengambilan Di Proses</p>
 						</div>

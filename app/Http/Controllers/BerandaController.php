@@ -17,7 +17,7 @@ class BerandaController extends Controller
     public function pengajuan_izin_penelitian()
     {
         $title = "Pengajuan Izin Penelitian";
-        $data = IzinPenelitian::paginate(1);
+        $data = IzinPenelitian::where('user_id', Auth::user()->id)->paginate(1);
         return view('web.pengajuan_izin_penelitian', compact('title','data'));
     }
 
@@ -56,11 +56,14 @@ class BerandaController extends Controller
             $request->izin_penelitian->move(public_path('upload/izin_penelitian'), $input['izin_penelitian']);
         }	
         
-		// $input['user_id'] = Auth::user()->id;
+		$input['kode'] = 'IP-'.date('Ymd').date('His');
+		$input['tanggal'] = date('Y-m-d');
+		$input['waktu'] = date('H:i:s');
+		$input['user_id'] = Auth::user()->id;
 		
         IzinPenelitian::create($input);
 		
-		return redirect('/buat_permohonan_w')->with('status','Permohonan Terkirim');
+		return redirect('/pengajuan_izin_penelitian_w')->with('status','Permohonan Terkirim');
     }
 
     public function login()

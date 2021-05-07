@@ -57,20 +57,34 @@
             <div class="table-responsive table-download box-body">
                 <table class="table table-bordered table-striped table-hover">
                 <tr class='info'>
-                    <th>#</th>
-                    <th width="">Dokumen Regulasi</th>
-                    <th width="160">Tgl Update</th>
+                    <th width="10px">#</th>
+                    <th width="20px">Kode Pengajuan</th>
+                    <th width="20px">Tanggal Pengajuan</th>
+                    <th width="160">Status</th>
                     <th width="130">Aksi</th>
                 </tr>
                 @foreach($data as $v)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td class="txt-file">
-                        {{ $v->status }}
+                      <td>{{ $v->kode }}</td>
+                      <td>{{ $v->tanggal }}</td>
+                      <td>
+                        @if($v->status==0)
+                          <span class="label label-danger" style="background-color: #dd4b39 !important;">Terkirim</span>
+                        @elseif($v->status==1)
+                          <span class="label label-success" style="background-color: #f39c12 !important;">Sedang Di Proses</span>
+                         @elseif($v->status==2)
+                          <span class="label label-success" style="background-color: #3c8dbc !important;">Telah Di Verifikasi</span>
+                        @else
+                          <span class="label label-success" style="background-color: #00a65a !important;">Selesai</span>
+                        @endif
                       </td>
-                      <td class="txt-file">{{ $v->updated_at }}</td>
-                      <!--td><a href="/upload/regulasi/{{ $v->file }}" target="blank" class="btn btn-sm btn-primary">Download <i class="icofont-download"></i></a></td-->
-                      <td><a href="/download_file_regulasi_w/{{ $v->id }}" target="blank" class="btn btn-sm btn-primary btn-flat">Download <i class="icofont-download"></i></a></td>
+                      <td>
+                        <!-- <a href="/upload/regulasi/{{ $v->file }}" target="blank" class="btn btn-sm btn-primary">Download <i class="icofont-download"></i></a> -->
+                        @if($v->status==3)
+                          <a href="{{ asset('/upload/dokumen_rekomendasi/'.$v->dokumen_rekomendasi) }}" target="blank" class="btn btn-sm btn-primary btn-flat">Download Dok. Rekomendasi<i class="icofont-download"></i></a>
+                        @endif
+                      </td>
 			
                     </tr>
                 @endforeach

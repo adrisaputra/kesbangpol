@@ -29,12 +29,6 @@
             <form action="{{ url('/buat_pengajuan_izin_penelitian_w')}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
 						
-            @if ($message = Session::get('status'))
-						<p class="alert text-center" style="color: #ffffff;background-color: #4caf50;border-color: #d6e9c6;">
-							{{ $message }}
-						</p>
-						@endif
-						
               <div class="row">
                 <div class="col-md-5 form-group">
                   <p style="margin-top:25px">Surat Dari Perguruan Tinggi/Instansi Asal Peneliti</p>

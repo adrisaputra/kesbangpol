@@ -5,6 +5,8 @@ use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\IzinPenelitianController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,39 @@ Route::post('/buat_pengajuan_izin_penelitian_w', [BerandaController::class, 'sto
 Route::get('/registrasi_w', [BerandaController::class, 'registrasi']);
 Route::post('/registrasi_w', [RegistrasiController::class, 'store']);
 
-Route::get('/login', function () {
+Route::get('/login-sistem', function () {
     return view('auth.login');
 });
 
 Route::get('/dashboard', [HomeController::class, 'index']);
+
+## Izin Penelitian
+Route::get('/izin_penelitian_masuk', [IzinPenelitianController::class, 'index']);
+Route::get('/izin_penelitian_di_proses', [IzinPenelitianController::class, 'index']);
+Route::get('/izin_penelitian_di_verifikasi', [IzinPenelitianController::class, 'index']);
+Route::get('/izin_penelitian_selesai', [IzinPenelitianController::class, 'index']);
+
+Route::get('/izin_penelitian_masuk/search', [IzinPenelitianController::class, 'search']);
+Route::get('/izin_penelitian_di_proses/search', [IzinPenelitianController::class, 'search']);
+Route::get('/izin_penelitian_di_verifikasi/search', [IzinPenelitianController::class, 'search']);
+Route::get('/izin_penelitian_selesai/search', [IzinPenelitianController::class, 'search']);
+
+Route::get('/izin_penelitian_masuk/create', [IzinPenelitianController::class, 'create']);
+Route::post('/izin_penelitian_masuk', [IzinPenelitianController::class, 'store']);
+
+Route::get('/izin_penelitian_masuk/detail/{izin_penelitian}', [IzinPenelitianController::class, 'detail']);
+Route::get('/izin_penelitian_di_proses/detail/{izin_penelitian}', [IzinPenelitianController::class, 'detail']);
+Route::get('/izin_penelitian_di_verifikasi/detail/{izin_penelitian}', [IzinPenelitianController::class, 'detail']);
+Route::get('/izin_penelitian_selesai/detail/{izin_penelitian}', [IzinPenelitianController::class, 'detail']);
+
+Route::get('/izin_penelitian_masuk/proses/{izin_penelitian}', [IzinPenelitianController::class, 'proses']);
+Route::put('/izin_penelitian_di_verifikasi/edit/{izin_penelitian}', [IzinPenelitianController::class, 'update']);
+
+## User
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/search', [UserController::class, 'search']);
+Route::get('/user/create', [UserController::class, 'create']);
+Route::post('/user', [UserController::class, 'store']);
+Route::get('/user/edit/{user}', [UserController::class, 'edit']);
+Route::put('/user/edit/{user}', [UserController::class, 'update']);
+Route::get('/user/hapus/{user}',[UserController::class, 'delete']);
