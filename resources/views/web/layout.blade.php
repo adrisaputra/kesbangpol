@@ -67,30 +67,42 @@
                 @endif
                 </ul>
               </li>
-              <li><a href="{{ url('status_dokumen_w') }}">Pengaduan</a></li>
               <li class="dropdown"><a href="#"><span>Status Dokumen</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="{{ url('pengajuan_izin_penelitian_w') }}">Izin Penelitian</a></li>
+                  <li><a href="{{ url('status_izin_penelitian_w') }}">Izin Penelitian</a></li>
                   <li><a href="{{ url('pengajuan_skko') }}">Surat Keterangan Keberadaan Ormas</a></li>
                   <li><a href="{{ url('pengajuan_skto') }}">Surat Keterangan Terdaftar Ormas</a></li>
                 </ul>
               </li>
-              <li><a href="{{ url('download_dokumen_w') }}">Download Dokumen</a></li>
+              <li><a href="{{ url('status_dokumen_w') }}">Pengaduan</a></li>
             </ul>
           </li>
           <li><a href="{{ url('galeri_w') }}">Galeri</a></li>
           <li><a href="{{ url('kontak_w') }}">Kontak</a></li>
           @if(Auth::user())
-            <li class="dropdown"><img src="{{ asset('upload/foto_ktp/'.Auth::user()->foto_ktp)}}" width=40px height="40px" style="border-radius: 50%;margin-left:20px"></a>
-              <ul>
-                  <li><a href="{{ url('download_dokumen_w') }}">Akun</a></li>
-                  <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Sign out</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-											@csrf
-									</form></li>
-              </ul>
-            </li>
+            @if(Auth::user()->foto_ktp)
+              <li class="dropdown"><img src="{{ asset('upload/foto_ktp/'.Auth::user()->foto_ktp)}}" width=40px height="40px" style="border-radius: 50%;margin-left:20px"></a>
+                <ul>
+                    <li><a href="{{ url('download_dokumen_w') }}">Akun</a></li>
+                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">Sign out</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form></li>
+                </ul>
+              </li>
+            @else
+              <li class="dropdown"><img src="{{ asset('assets/profile-1-20210205190338.png')}}" width=40px height="40px" style="border-radius: 50%;margin-left:20px"></a>
+                <ul>
+                    <li><a href="{{ url('download_dokumen_w') }}">Akun</a></li>
+                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">Sign out</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form></li>
+                </ul>
+              </li>
+            @endif
           @else
             <li><a href="{{ url('login_w') }}">Login</a></li>
           @endif

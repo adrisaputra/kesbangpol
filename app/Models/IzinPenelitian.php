@@ -19,6 +19,7 @@ class IzinPenelitian extends Model
         'perbaikan',
         'tanggal',
         'waktu',
+        'status',
         'user_id'
     ];
 }

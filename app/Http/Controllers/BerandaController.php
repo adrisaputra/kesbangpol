@@ -17,15 +17,138 @@ class BerandaController extends Controller
     public function pengajuan_izin_penelitian()
     {
         $title = "Pengajuan Izin Penelitian";
-        $data = IzinPenelitian::where('user_id', Auth::user()->id)->paginate(1);
-        return view('web.pengajuan_izin_penelitian', compact('title','data'));
+        $data = IzinPenelitian::where('status', 0)->where('user_id', Auth::user()->id)->paginate(1);
+        return view('web.izin_penelitian.index', compact('title','data'));
+    }
+
+    public function status_izin_penelitian()
+    {
+        $title = "Pengajuan Izin Penelitian";
+        $data = IzinPenelitian::
+                where(function ($query) {
+                    $query->where('izin_penelitian_tbl.status',1)
+                        ->orWhere('izin_penelitian_tbl.status',2)
+                        ->orWhere('izin_penelitian_tbl.status',3)
+                        ->orWhere('izin_penelitian_tbl.status',4);
+                })->where('user_id', Auth::user()->id)->paginate(1);
+        return view('web.izin_penelitian.index', compact('title','data'));
     }
 
     public function buat_pengajuan_izin_penelitian()
     {
         $title = "Buat Pengajuan Izin Penelitian";
-        return view('web.buat_pengajuan_izin_penelitian', compact('title'));
+
+        $input['kode'] = 'IP-'.date('Ymd').date('His');
+		$input['tanggal'] = date('Y-m-d');
+		$input['waktu'] = date('H:i:s');
+		$input['user_id'] = Auth::user()->id;
+		
+        IzinPenelitian::create($input);
+
+        return redirect('/pengajuan_izin_penelitian_w')->with('status','Kode Pengajuan Berhasil Di buat ! Silahkan Upload Laporan Anda...');
+
     }
+
+    public function edit(IzinPenelitian $izin_penelitian)
+    {
+        $title = "Data Masuk";
+        $view=view('web.izin_penelitian.edit', compact('title','izin_penelitian'));
+        $view=$view->render();
+        return $view;
+    }
+
+    public function update(Request $request, IzinPenelitian $izin_penelitian)
+    {
+        if($request->file == 1){
+            $this->validate($request, [
+                'surat_perguruan_tinggi' => 'required|mimes:pdf|max:500'
+            ]);
+        } else if($request->file == 2){
+            $this->validate($request, [
+                'proposal_penelitian' => 'required|mimes:pdf|max:500'
+            ]);
+        } else if($request->file == 3){
+            $this->validate($request, [
+                'ktp_peneliti' => 'required|mimes:pdf|max:500'
+            ]);
+        } else if($request->file == 4){
+            $this->validate($request, [
+                'izin_penelitian' => 'required|mimes:pdf|max:500'
+            ]);
+        }
+        
+
+        if($izin_penelitian->surat_perguruan_tinggi && $request->file('surat_perguruan_tinggi')!=""){
+            $image_path = public_path().'/upload/surat_perguruan_tinggi/'.$izin_penelitian->surat_perguruan_tinggi;
+            unlink($image_path);
+        }
+
+        if($izin_penelitian->proposal_penelitian && $request->file('proposal_penelitian')!=""){
+            $image_path = public_path().'/upload/proposal_penelitian/'.$izin_penelitian->proposal_penelitian;
+            unlink($image_path);
+        }
+
+        if($izin_penelitian->ktp_peneliti && $request->file('ktp_peneliti')!=""){
+            $image_path = public_path().'/upload/ktp_peneliti/'.$izin_penelitian->ktp_peneliti;
+            unlink($image_path);
+        }
+
+        if($izin_penelitian->izin_penelitian && $request->file('izin_penelitian')!=""){
+            $image_path = public_path().'/upload/izin_penelitian/'.$izin_penelitian->izin_penelitian;
+            unlink($image_path);
+        }
+
+        $izin_penelitian->fill($request->all());
+        
+		if($request->file('surat_perguruan_tinggi') == ""){}
+    	else
+    	{	
+            $filename = time().'.'.$request->surat_perguruan_tinggi->getClientOriginalExtension();
+            $request->surat_perguruan_tinggi->move(public_path('upload/surat_perguruan_tinggi'), $filename);
+            $izin_penelitian->surat_perguruan_tinggi = $filename;
+		}
+		
+		if($request->file('proposal_penelitian') == ""){}
+    	else
+    	{	
+            $filename = time().'.'.$request->proposal_penelitian->getClientOriginalExtension();
+            $request->proposal_penelitian->move(public_path('upload/proposal_penelitian'), $filename);
+            $izin_penelitian->proposal_penelitian = $filename;
+		}
+		
+		if($request->file('ktp_peneliti') == ""){}
+    	else
+    	{	
+            $filename = time().'.'.$request->ktp_peneliti->getClientOriginalExtension();
+            $request->ktp_peneliti->move(public_path('upload/ktp_peneliti'), $filename);
+            $izin_penelitian->ktp_peneliti = $filename;
+		}
+		
+		if($request->file('izin_penelitian') == ""){}
+    	else
+    	{	
+            $filename = time().'.'.$request->izin_penelitian->getClientOriginalExtension();
+            $request->izin_penelitian->move(public_path('upload/izin_penelitian'), $filename);
+            $izin_penelitian->izin_penelitian = $filename;
+		}
+		
+    	$izin_penelitian->save();
+		
+        if($request->status==1){
+		    return redirect('/pengajuan_izin_penelitian_w')->with('status', 'Pengajuan Di Kirim !');
+        } else {
+		    return redirect('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)->with('status', 'File Berhasil Di Simpan !');
+        }
+    }
+
+    public function detail(IzinPenelitian $izin_penelitian)
+    {
+        $title = "Status Izin Penelitian";
+        $view=view('web.izin_penelitian.detail', compact('title','izin_penelitian'));
+        $view=$view->render();
+        return $view;
+    }
+
 
     public function store(Request $request)
     {

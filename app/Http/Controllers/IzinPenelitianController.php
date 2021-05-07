@@ -25,13 +25,13 @@ class IzinPenelitianController extends Controller
                 $title = "Data Masuk";
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',0)
+                                ->where('izin_penelitian_tbl.status',1)
                                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
             } else {
                 $title = "Data Masuk";
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',1)
+                                ->where('izin_penelitian_tbl.status',2)
                                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
             }
 
@@ -40,7 +40,7 @@ class IzinPenelitianController extends Controller
             $title = "Data Di Proses";
             $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                             ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                            ->where('izin_penelitian_tbl.status',1)
+                            ->where('izin_penelitian_tbl.status',2)
                             ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
 
         }elseif(Request()->segment(1)=='izin_penelitian_di_verifikasi'){
@@ -49,14 +49,14 @@ class IzinPenelitianController extends Controller
             if(Auth::user()->group==2){
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',2)
+                                ->where('izin_penelitian_tbl.status',3)
                                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
             } else {
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
                                 ->where(function ($query) {
-                                    $query->where('izin_penelitian_tbl.status',2)
-                                        ->orWhere('izin_penelitian_tbl.status',3);
+                                    $query->where('izin_penelitian_tbl.status',3)
+                                        ->orWhere('izin_penelitian_tbl.status',4);
                                 })
                                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
             }
@@ -67,7 +67,7 @@ class IzinPenelitianController extends Controller
             $title = "Data Selesai";
             $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                             ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                            ->where('izin_penelitian_tbl.status',3)
+                            ->where('izin_penelitian_tbl.status',4)
                             ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
         }
        
@@ -83,7 +83,7 @@ class IzinPenelitianController extends Controller
             $izin_penelitian =  $request->get('search');
             $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',0)
+                                ->where('izin_penelitian_tbl.status',1)
                                 ->where(function ($query) use ($izin_penelitian) {
                                     $query->where('kode', 'LIKE', '%'.$izin_penelitian.'%')
                                         ->orWhere('name', 'LIKE', '%'.$izin_penelitian.'%')
@@ -97,7 +97,7 @@ class IzinPenelitianController extends Controller
             $izin_penelitian =  $request->get('search');
             $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',1)
+                                ->where('izin_penelitian_tbl.status',2)
                                 ->where(function ($query) use ($izin_penelitian) {
                                     $query->where('kode', 'LIKE', '%'.$izin_penelitian.'%')
                                         ->orWhere('name', 'LIKE', '%'.$izin_penelitian.'%')
@@ -113,7 +113,7 @@ class IzinPenelitianController extends Controller
             if(Auth::user()->group==2){
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',2)
+                                ->where('izin_penelitian_tbl.status',3)
                                 ->where(function ($query) use ($izin_penelitian) {
                                     $query->where('kode', 'LIKE', '%'.$izin_penelitian.'%')
                                         ->orWhere('name', 'LIKE', '%'.$izin_penelitian.'%')
@@ -123,10 +123,10 @@ class IzinPenelitianController extends Controller
             } else {
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',2)
+                                ->where('izin_penelitian_tbl.status',3)
                                 ->where(function ($query) {
-                                    $query->where('izin_penelitian_tbl.status',2)
-                                        ->orWhere('izin_penelitian_tbl.status',3);
+                                    $query->where('izin_penelitian_tbl.status',3)
+                                        ->orWhere('izin_penelitian_tbl.status',4);
                                 })->where(function ($query) use ($izin_penelitian) {
                                     $query->where('kode', 'LIKE', '%'.$izin_penelitian.'%')
                                         ->orWhere('name', 'LIKE', '%'.$izin_penelitian.'%')
@@ -141,7 +141,7 @@ class IzinPenelitianController extends Controller
             $izin_penelitian =  $request->get('search');
             $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
-                                ->where('izin_penelitian_tbl.status',3)
+                                ->where('izin_penelitian_tbl.status',4)
                                 ->where(function ($query) use ($izin_penelitian) {
                                     $query->where('kode', 'LIKE', '%'.$izin_penelitian.'%')
                                         ->orWhere('name', 'LIKE', '%'.$izin_penelitian.'%')
@@ -154,62 +154,6 @@ class IzinPenelitianController extends Controller
 		return view('admin.izin_penelitian.index',compact('title','izin_penelitian'));
     }
 	
-    ## Tampilkan Form Create
-    public function create()
-    {
-		$view=view('admin.izin_penelitian.create');
-        $view=$view->render();
-        return $view;
-    }
-
-    ## Simpan Data
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'nis' => 'required|numeric|unique:izin_penelitian_tbl',
-            'nama' => 'required',
-            'jenis_kelamin' => 'required',
-            'kelas' => 'required',
-            'telepon' => 'required',
-            'alamat' => 'required',
-            'foto' => 'mimes:jpg,jpeg,png|max:300'
-        ]);
-
-		$input['nis'] = $request->nis;
-		$input['nama'] = $request->nama;
-		$input['jenis_kelamin'] = $request->jenis_kelamin;
-		$input['kelas'] = $request->kelas;
-		$input['telepon'] = $request->telepon;
-		$input['alamat'] = $request->alamat;
-		$input['tanggal_buat'] = date('d-m-Y');
-        
-        if($request->file('foto')){
-            $input['foto'] = time().'.'.$request->foto->getClientOriginalExtension();
-            $request->foto->move(public_path('upload/foto'), $input['foto']);
-        }
-        
-		$input['user_id'] = Auth::user()->id;
-		
-        IzinPenelitian::create($input);
-		
-        
-		$input2['name'] = $request->nis;
-        $input2['email'] = $request->nis."@gmail.com";
-        $input2['password'] = Hash::make($request->nis);
-        $input2['nis'] = $request->nis;
-        $input2['group'] = 3;
-        
-        User::create($input2);
-
-		return redirect('/izin_penelitian')->with('status','Data Tersimpan');
-    }
-
-    ## Tampilkan Detail
-    public function show($id)
-    {
-        //
-    }
-
     ## Tampilkan Form Edit
     public function detail(IzinPenelitian $izin_penelitian)
     {
@@ -223,10 +167,10 @@ class IzinPenelitianController extends Controller
     public function proses(Request $request, IzinPenelitian $izin_penelitian)
     {
         if(Auth::user()->group==2){
-            $izin_penelitian->status = 1;
+            $izin_penelitian->status = 2;
             $izin_penelitian->save();
         } else {
-            $izin_penelitian->status = 2;
+            $izin_penelitian->status = 3;
             $izin_penelitian->save();
         }
 		
@@ -255,7 +199,7 @@ class IzinPenelitianController extends Controller
             $izin_penelitian->dokumen_rekomendasi = $filename;
 		}
 		
-        $izin_penelitian->status = 3;
+        $izin_penelitian->status = 4;
     	$izin_penelitian->save();
 		
 		return redirect('/izin_penelitian_selesai')->with('status', 'Data Berhasil Diubah');

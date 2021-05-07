@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -17,5 +18,11 @@ class LoginController extends Controller
         }
 
 		return redirect('/login_w')->with('status','User Tidak Aktif, Silahkan Hubungi Admin !');
+    }
+
+    public function logout(Request $request)
+    {
+       Auth::logout();
+       return redirect('login')->withSuccess('Terimakasih, selamat datang kembali!');
     }
 }

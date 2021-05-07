@@ -36,7 +36,9 @@
             <div class="box-header with-border">
               <div class="box-tools pull-left" style="float: left;">
                 <div style="padding-top:10px">
-                  <a href="{{ url('/buat_pengajuan_izin_penelitian_w') }}" class="btn btn-success btn-flat" title="Buat Pengajuan">Buat Pengajuan</a>
+                  @if(Request::segment(1)!="status_izin_penelitian_w")
+                    <a href="{{ url('/buat_pengajuan_izin_penelitian_w') }}" class="btn btn-success btn-flat" title="Buat Pengajuan" onclick="return confirm('Anda Yakin ?');">Buat Pengajuan</a>
+                  @endif
                   <a href="{{ url('/pengajuan_izin_penelitian_w') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
                 </div>
               </div>
@@ -70,18 +72,23 @@
                       <td>{{ $v->tanggal }}</td>
                       <td>
                         @if($v->status==0)
-                          <span class="label label-danger" style="background-color: #dd4b39 !important;">Terkirim</span>
+                          <span class="label label-danger" style="background-color: #ff5722 !important;">Silahkan Upload Dokumen Persyaratan</span>
                         @elseif($v->status==1)
+                          <span class="label label-danger" style="background-color: #dd4b39 !important;">Terkirim</span>
+                        @elseif($v->status==2)
                           <span class="label label-success" style="background-color: #f39c12 !important;">Sedang Di Proses</span>
-                         @elseif($v->status==2)
+                         @elseif($v->status==3)
                           <span class="label label-success" style="background-color: #3c8dbc !important;">Telah Di Verifikasi</span>
                         @else
                           <span class="label label-success" style="background-color: #00a65a !important;">Selesai</span>
                         @endif
                       </td>
                       <td>
-                        <!-- <a href="/upload/regulasi/{{ $v->file }}" target="blank" class="btn btn-sm btn-primary">Download <i class="icofont-download"></i></a> -->
-                        @if($v->status==3)
+                        @if($v->status==0)
+                          <a href="{{ asset('/pengajuan_izin_penelitian_w/edit/'.$v->id) }}" class="btn btn-sm btn-danger btn-flat">Upload Dokumen<i class="icofont-download"></i></a>
+                        @elseif($v->status==1 || $v->status==2 ||$v->status==3 )
+                          <a href="{{ asset('/pengajuan_izin_penelitian_w/detail/'.$v->id) }}" class="btn btn-sm btn-primary btn-flat">Lihat Dokumen<i class="icofont-download"></i></a>
+                        @elseif($v->status==4)
                           <a href="{{ asset('/upload/dokumen_rekomendasi/'.$v->dokumen_rekomendasi) }}" target="blank" class="btn btn-sm btn-primary btn-flat">Download Dok. Rekomendasi<i class="icofont-download"></i></a>
                         @endif
                       </td>
