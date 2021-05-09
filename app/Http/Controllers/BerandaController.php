@@ -17,23 +17,58 @@ class BerandaController extends Controller
     public function pengajuan_izin_penelitian()
     {
         $title = "Pengajuan Izin Penelitian";
-        $data = IzinPenelitian::where('status', 0)->where('user_id', Auth::user()->id)->paginate(1);
+        $data = IzinPenelitian::where('status', 0)->where('user_id', Auth::user()->id)
+                ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
         return view('web.izin_penelitian.index', compact('title','data'));
     }
 
-    public function status_izin_penelitian()
+    public function search_pengajuan_izin_penelitian(Request $request)
     {
         $title = "Pengajuan Izin Penelitian";
+        $data = $request->get('search');
+        
+        $data = IzinPenelitian::where('status', 0)->where('user_id', Auth::user()->id)
+                ->where('kode', 'LIKE', '%'.$data.'%')
+                ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
+    
+        return view('web.izin_penelitian.index', compact('title','data'));
+    }
+      
+    public function status_izin_penelitian()
+    {
+        $title = "Status Izin Penelitian";
         $data = IzinPenelitian::
                 where(function ($query) {
                     $query->where('izin_penelitian_tbl.status',1)
                         ->orWhere('izin_penelitian_tbl.status',2)
                         ->orWhere('izin_penelitian_tbl.status',3)
-                        ->orWhere('izin_penelitian_tbl.status',4);
-                })->where('user_id', Auth::user()->id)->paginate(1);
+                        ->orWhere('izin_penelitian_tbl.status',4)
+                        ->orWhere('izin_penelitian_tbl.status',5);
+                })->where('user_id', Auth::user()->id)
+                ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
         return view('web.izin_penelitian.index', compact('title','data'));
     }
 
+    public function search_status_izin_penelitian(Request $request)
+    {
+        $title = "Status Izin Penelitian";
+        $data = $request->get('search');
+
+        $data = IzinPenelitian::
+                where(function ($query) {
+                    $query->where('izin_penelitian_tbl.status',1)
+                        ->orWhere('izin_penelitian_tbl.status',2)
+                        ->orWhere('izin_penelitian_tbl.status',3)
+                        ->orWhere('izin_penelitian_tbl.status',4)
+                        ->orWhere('izin_penelitian_tbl.status',5);
+                })
+                ->where('kode', 'LIKE', '%'.$data.'%')
+                ->where('user_id', Auth::user()->id)
+                ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
+
+        return view('web.izin_penelitian.index', compact('title','data'));
+    }
+      
     public function buat_pengajuan_izin_penelitian()
     {
         $title = "Buat Pengajuan Izin Penelitian";
@@ -51,8 +86,16 @@ class BerandaController extends Controller
 
     public function edit(IzinPenelitian $izin_penelitian)
     {
-        $title = "Data Masuk";
+        $title = "Masukkan Data";
         $view=view('web.izin_penelitian.edit', compact('title','izin_penelitian'));
+        $view=$view->render();
+        return $view;
+    }
+
+    public function perbaikan(IzinPenelitian $izin_penelitian)
+    {
+        $title = "Perbaiki Data";
+        $view=view('web.izin_penelitian.perbaikan', compact('title','izin_penelitian'));
         $view=$view->render();
         return $view;
     }
@@ -137,7 +180,11 @@ class BerandaController extends Controller
         if($request->status==1){
 		    return redirect('/pengajuan_izin_penelitian_w')->with('status', 'Pengajuan Di Kirim !');
         } else {
-		    return redirect('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)->with('status', 'File Berhasil Di Simpan !');
+            if(request()->segment(2)=='edit'){
+                return redirect('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)->with('status', 'File Berhasil Di Simpan !');
+            } else {
+                return redirect('/pengajuan_izin_penelitian_w/perbaikan/'.$izin_penelitian->id)->with('status', 'File Berhasil Di Simpan !');
+            }
         }
     }
 

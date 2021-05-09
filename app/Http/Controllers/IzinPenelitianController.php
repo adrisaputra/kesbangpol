@@ -180,9 +180,11 @@ class IzinPenelitianController extends Controller
     ## Edit Data
     public function update(Request $request, IzinPenelitian $izin_penelitian)
     {
-        $this->validate($request, [
-            'dokumen_rekomendasi' => 'required|mimes:pdf|max:500'
-        ]);
+        if($request->cek_perbaikan == ""){
+            $this->validate($request, [
+                'dokumen_rekomendasi' => 'required|mimes:pdf|max:500'
+            ]);
+        }
 
         if($izin_penelitian->dokumen_rekomendasi && $request->file('dokumen_rekomendasi')!=""){
             $image_path = public_path().'/upload/dokumen_rekomendasi/'.$izin_penelitian->dokumen_rekomendasi;
@@ -198,11 +200,22 @@ class IzinPenelitianController extends Controller
             $request->dokumen_rekomendasi->move(public_path('upload/dokumen_rekomendasi'), $filename);
             $izin_penelitian->dokumen_rekomendasi = $filename;
 		}
-		
-        $izin_penelitian->status = 4;
-    	$izin_penelitian->save();
-		
-		return redirect('/izin_penelitian_selesai')->with('status', 'Data Berhasil Diubah');
+
+		if($request->cek_perbaikan){
+            $izin_penelitian->perbaikan = $request->perbaikan;
+            $izin_penelitian->status = 5;
+
+            $izin_penelitian->save();
+            
+            return redirect('/izin_penelitian_selesai')->with('status', 'Data Berhasil Di Kirim Untuk Diperbaiki');
+        } else {
+            $izin_penelitian->status = 4;
+
+            $izin_penelitian->save();
+            
+            return redirect('/izin_penelitian_selesai')->with('status', 'Data Berhasil Diubah');
+        }
+        
     }
 
     ## Hapus Data

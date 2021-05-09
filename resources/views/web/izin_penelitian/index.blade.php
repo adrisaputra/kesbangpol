@@ -38,13 +38,19 @@
                 <div style="padding-top:10px">
                   @if(Request::segment(1)!="status_izin_penelitian_w")
                     <a href="{{ url('/buat_pengajuan_izin_penelitian_w') }}" class="btn btn-success btn-flat" title="Buat Pengajuan" onclick="return confirm('Anda Yakin ?');">Buat Pengajuan</a>
-                  @endif
-                  <a href="{{ url('/pengajuan_izin_penelitian_w') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>    
+                    <a href="{{ url('/pengajuan_izin_penelitian_w') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>   
+                  @else
+                    <a href="{{ url('/status_izin_penelitian_w') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>   
+                  @endif 
                 </div>
               </div>
               <div class="box-tools pull-right" style="float: right;margin-top: 10px;">
                 <div class="form-inline">
-                  <form action="{{ url('/user/search') }}" method="GET">
+                @if(Request::segment(1)=="pengajuan_izin_penelitian_w")
+                  <form action="{{ url('/pengajuan_izin_penelitian_w/search') }}" method="GET">
+                @else
+                  <form action="{{ url('/status_izin_penelitian_w/search') }}" method="GET">
+                @endif
                     <div class="input-group margin">
                       <input type="text" class="form-control" name="search" placeholder="Masukkan kata kunci pencarian" style="border-radius: 0;">
                       <span class="input-group-btn">
@@ -77,10 +83,12 @@
                           <span class="label label-danger" style="background-color: #dd4b39 !important;">Terkirim</span>
                         @elseif($v->status==2)
                           <span class="label label-success" style="background-color: #f39c12 !important;">Sedang Di Proses</span>
-                         @elseif($v->status==3)
+                        @elseif($v->status==3)
                           <span class="label label-success" style="background-color: #3c8dbc !important;">Telah Di Verifikasi</span>
-                        @else
+                        @elseif($v->status==4)
                           <span class="label label-success" style="background-color: #00a65a !important;">Selesai</span>
+                        @else
+                          <span class="label label-success" style="background-color: #00c0ef !important;">Perbaiki Laporan</span>
                         @endif
                       </td>
                       <td>
@@ -88,8 +96,10 @@
                           <a href="{{ asset('/pengajuan_izin_penelitian_w/edit/'.$v->id) }}" class="btn btn-sm btn-danger btn-flat">Upload Dokumen<i class="icofont-download"></i></a>
                         @elseif($v->status==1 || $v->status==2 ||$v->status==3 )
                           <a href="{{ asset('/pengajuan_izin_penelitian_w/detail/'.$v->id) }}" class="btn btn-sm btn-primary btn-flat">Lihat Dokumen<i class="icofont-download"></i></a>
+                        @elseif($v->status==5 )
+                          <a href="{{ asset('/pengajuan_izin_penelitian_w/perbaikan/'.$v->id) }}" class="btn btn-sm btn-primary btn-flat">Perbaiki Dokumen<i class="icofont-download"></i></a>
                         @elseif($v->status==4)
-                          <a href="{{ asset('/upload/dokumen_rekomendasi/'.$v->dokumen_rekomendasi) }}" target="blank" class="btn btn-sm btn-primary btn-flat">Download Dok. Rekomendasi<i class="icofont-download"></i></a>
+                          <a href="{{ asset('/upload/dokumen_rekomendasi/'.$v->dokumen_rekomendasi) }}" target="blank" class="btn btn-sm btn-success btn-flat">Download Dok. Rekomendasi<i class="icofont-download"></i></a>
                         @endif
                       </td>
 			

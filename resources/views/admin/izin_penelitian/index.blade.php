@@ -49,6 +49,7 @@
 						<th>NIK Pengirim</th>
 						<th>Nama Pengirim</th>
 						<th>Tanggal Kirim</th>
+						<th>Jenis File</th>
 						<th style="width: 20%">#aksi</th>
 					</tr>
 					@foreach($izin_penelitian as $v)
@@ -58,6 +59,13 @@
 						<td>{{ $v->nik }}</td>
 						<td>{{ $v->name }}</td>
 						<td>{{ $v->tanggal }}</td>
+						<td>
+							@if($v->perbaikan=="")
+								<span class="label label-success">Data Baru</span>
+							@else
+								<span class="label label-info">Telah Di Perbaiki</span>
+							@endif
+						</td>
 						<td>
 							<a href="{{ url('/'.Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-xs btn-flat btn-info">Lihat Dokumen</a>
 							@if(Request::segment(1)=="izin_penelitian_selesai")

@@ -40,7 +40,7 @@
                   <p style="margin-top:25px">Surat Dari Perguruan Tinggi/Instansi Asal Peneliti</p>
                 </div>
                 <div class="col-md-7 form-group">
-                    <a href="{{ asset('/upload/surat_perguruan_tinggi/'.$izin_penelitian->surat_perguruan_tinggi) }}" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/surat_perguruan_tinggi/'.$izin_penelitian->surat_perguruan_tinggi) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -49,7 +49,7 @@
                   <p style="margin-top:25px">Proposal Penelitian</p>
                 </div>
                 <div class="col-md-7 form-group">
-                    <a href="{{ asset('/upload/proposal_penelitian/'.$izin_penelitian->proposal_penelitian) }}" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/proposal_penelitian/'.$izin_penelitian->proposal_penelitian) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -58,7 +58,7 @@
                   <p style="margin-top:25px">Foto Copy KTP Peneliti</p>
                 </div>
                 <div class="col-md-7 form-group">
-                    <a href="{{ asset('/upload/ktp_peneliti/'.$izin_penelitian->ktp_peneliti) }}" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/ktp_peneliti/'.$izin_penelitian->ktp_peneliti) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -67,7 +67,7 @@
                   <p style="margin-top:25px">Formulir Permohonan Izin Penelitian</p>
                 </div>
                 <div class="col-md-7 form-group">
-                    <a href="{{ asset('/upload/izin_penelitian/'.$izin_penelitian->izin_penelitian) }}" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/izin_penelitian/'.$izin_penelitian->izin_penelitian) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
               <br>

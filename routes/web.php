@@ -33,11 +33,16 @@ Route::get('/clear-cache-all', function() {
 Route::get('/', [BerandaController::class, 'index']);
 Route::get('/login_w', [BerandaController::class, 'login']);
 Route::post('/login_w', [LoginController::class, 'authenticate']);
-Route::get('/status_izin_penelitian_w', [BerandaController::class, 'status_izin_penelitian']);
+
 Route::get('/pengajuan_izin_penelitian_w', [BerandaController::class, 'pengajuan_izin_penelitian']);
+Route::get('/pengajuan_izin_penelitian_w/search', [BerandaController::class, 'search_pengajuan_izin_penelitian']);
+Route::get('/status_izin_penelitian_w', [BerandaController::class, 'status_izin_penelitian']);
+Route::get('/status_izin_penelitian_w/search', [BerandaController::class, 'search_status_izin_penelitian']);
 Route::get('/buat_pengajuan_izin_penelitian_w', [BerandaController::class, 'buat_pengajuan_izin_penelitian']);
 Route::get('/pengajuan_izin_penelitian_w/edit/{izin_penelitian}', [BerandaController::class, 'edit']);
+Route::get('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'perbaikan']);
 Route::put('/pengajuan_izin_penelitian_w/edit/{izin_penelitian}', [BerandaController::class, 'update']);
+Route::put('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'update']);
 Route::get('/pengajuan_izin_penelitian_w/detail/{izin_penelitian}', [BerandaController::class, 'detail']);
 Route::get('/registrasi_w', [BerandaController::class, 'registrasi']);
 Route::post('/registrasi_w', [RegistrasiController::class, 'store']);
