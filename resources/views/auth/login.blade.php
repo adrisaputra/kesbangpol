@@ -4,7 +4,7 @@
 <div class="login-box">
             <div class="login-box-body">
                 <div class="text-center">
-                    <img src="{{ asset('/upload/logo/simpeg-indag.png') }}" alt="Chris Wood" class="img-fluid" style="height: 80px;max-width: 100%;max-height: 100%;" >
+                    <img src="{{ asset('upload/logo/logo_kesbangpol.png')}}" alt="Chris Wood" class="img-fluid" style="height: 80px;max-width: 100%;max-height: 100%;" >
                 </div><br>
                 <!-- Start Form Login -->
                 <form method="POST" action="{{ route('login') }}">

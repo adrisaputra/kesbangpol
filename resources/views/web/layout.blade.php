@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Flattern Bootstrap Template - Index</title>
+  <title>{{ __('SISTEM INFORMASI PELAYANAN KESBANGPOL KOTA KENDARI')}}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets2/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('upload/logo/kendari.png')}}" rel="icon">
   <link href="{{ asset('assets2/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Vendor CSS Files -->
@@ -44,9 +44,9 @@
     <div class="container d-flex justify-content-between" style="width: 70%;">
 
       <div class="logo">
-        <h1 class="text-light"><a href="index.html">Flattern</a></h1>
+        <!-- <h1 class="text-light"><a href="index.html">Flattern</a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <a href="index.html"><img src="{{ asset('upload/logo/logo_kesbangpol.png')}}" alt="" class="img-fluid"></a>
       </div>
 
       <nav id="navbar" class="navbar">

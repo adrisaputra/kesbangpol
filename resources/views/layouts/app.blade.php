@@ -23,7 +23,7 @@
             }
         </style>
     </head>
-    <body class="hold-transition login-page fontPoppins"  style="background-image: url(upload/background/190072.jpg);background-size: cover;">
+    <body class="hold-transition login-page fontPoppins"  style="background-image: url(upload/background/18006.jpg);background-size: cover;">
          @yield('content')
         <script src="{{ asset('/assets/core-admin/core-component/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('/assets/core-admin/core-component/bootstrap/dist/js/bootstrap.min.js') }}"></script>
