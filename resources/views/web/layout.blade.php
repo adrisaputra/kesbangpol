@@ -58,8 +58,8 @@
                 <ul>
                 @if(Auth::user())
                   <li><a href="{{ url('pengajuan_izin_penelitian_w') }}">Izin Penelitian</a></li>
-                  <li><a href="{{ url('pengajuan_skko_w') }}">Surat Keterangan Keberadaan Ormas</a></li>
-                  <li><a href="{{ url('pengajuan_skto_w') }}">Surat Keterangan Terdaftar Ormas</a></li>
+                  <li><a href="{{ url('pengajuan_skk_ormas_w') }}">Surat Keterangan Keberadaan Ormas</a></li>
+                  <li><a href="{{ url('pengajuan_skt_ormas_w') }}">Surat Keterangan Terdaftar Ormas</a></li>
                 @else
                   <li><a href="{{ url('login_w') }}">Izin Penelitian</a></li>
                   <li><a href="{{ url('login_w') }}">Surat Keterangan Keberadaan Ormas</a></li>
