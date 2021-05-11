@@ -31,7 +31,7 @@
                   <p style="margin-top:5px">Kode Pengajuan</p>
                 </div>
                 <div class="col-md-7 form-group">
-                  <input type="text" name="surat_perguruan_tinggi" class="form-control" value="{{ $skk_ormas->kode }}" disabled>
+                  <input type="text" name="surat_perguruan_tinggi" class="form-control" value="{{ $skt_ormas->kode }}" disabled>
                 </div>
               </div>
 
@@ -40,7 +40,7 @@
                   <p style="margin-top:25px">File Scan Anggaran Dasar (AD) Anggaran Rumah Tangga (ART)</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/anggaran_dasar/'.$skk_ormas->anggaran_dasar) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/anggaran_dasar/'.$skt_ormas->anggaran_dasar) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -49,7 +49,7 @@
                   <p style="margin-top:25px">File Scan Logo</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/logo/'.$skk_ormas->logo) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/logo/'.$skt_ormas->logo) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -58,7 +58,7 @@
                   <p style="margin-top:25px">File Scan Logo</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/bendera/'.$skk_ormas->bendera) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/bendera/'.$skt_ormas->bendera) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -67,7 +67,7 @@
                   <p style="margin-top:25px">File Scan Program Kerja</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/program_kerja/'.$skk_ormas->program_kerja) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/program_kerja/'.$skt_ormas->program_kerja) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@
                   <p style="margin-top:10px">File Scan Surat Keterangan Domisili Sekretariat Ormas dikeluarkan oleh Lurah/Kepala Desa Setempat atau sebutan lainnya</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/domisili/'.$skk_ormas->domisili) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/domisili/'.$skt_ormas->domisili) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -85,7 +85,7 @@
                   <p style="margin-top:25px">File Scan Bukti Kepemilikian atau Surat Perjanjian Kontrak atau Ijin Pakai dari Pemilik/Pengelola</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/kepemilikan/'.$skk_ormas->kepemilikan) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/kepemilikan/'.$skt_ormas->kepemilikan) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -94,7 +94,7 @@
                   <p style="margin-top:25px">File Scan Foto Kantor atau Sekretariat Ormas, Tampak Depan yang memuat papan nama</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/foto_kantor/'.$skk_ormas->foto_kantor) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/foto_kantor/'.$skt_ormas->foto_kantor) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -103,7 +103,7 @@
                   <p style="margin-top:15px">File Scan Surat Keputusan Susunan Pengurus Sesuai AD dan ART Ormas</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/susunan_pengurus/'.$skk_ormas->susunan_pengurus) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/susunan_pengurus/'.$skt_ormas->susunan_pengurus) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -112,7 +112,7 @@
                   <p style="margin-top:25px">File Scan Biodata Ketua atau sebutan lain</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/biodata_ketua/'.$skk_ormas->biodata_ketua) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/biodata_ketua/'.$skt_ormas->biodata_ketua) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -121,7 +121,7 @@
                   <p style="margin-top:25px">File Scan Foto Ketua berwarna  4 x 6 Terbaru ( 3 Bulan Terakhir )</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/foto_ketua/'.$skk_ormas->foto_ketua) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/foto_ketua/'.$skt_ormas->foto_ketua) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -130,7 +130,7 @@
                   <p style="margin-top:25px">File Scan KTP Ketua</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/ktp_ketua/'.$skk_ormas->ktp_ketua) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/ktp_ketua/'.$skt_ormas->ktp_ketua) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -139,7 +139,7 @@
                   <p style="margin-top:25px">File Scan Biodata Sekretaris atau sebutan lain</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/biodata_sekretaris/'.$skk_ormas->biodata_sekretaris) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/biodata_sekretaris/'.$skt_ormas->biodata_sekretaris) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -148,7 +148,7 @@
                   <p style="margin-top:25px">File Scan Foto Sekretaris berwarna  4 x 6 Terbaru</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/foto_sekretaris/'.$skk_ormas->foto_sekretaris) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/foto_sekretaris/'.$skt_ormas->foto_sekretaris) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -157,7 +157,7 @@
                   <p style="margin-top:25px">File Scan KTP Sekretaris</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/ktp_sekretaris/'.$skk_ormas->ktp_sekretaris) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/ktp_sekretaris/'.$skt_ormas->ktp_sekretaris) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -166,7 +166,7 @@
                   <p style="margin-top:25px">File Scan Biodata Bendahara atau sebutan lain</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/biodata_bendahara/'.$skk_ormas->biodata_bendahara) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/biodata_bendahara/'.$skt_ormas->biodata_bendahara) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -175,7 +175,7 @@
                   <p style="margin-top:25px">File Scan Foto Bendahara berwarna  4 x 6 Terbaru</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/foto_bendahara/'.$skk_ormas->foto_bendahara) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/foto_bendahara/'.$skt_ormas->foto_bendahara) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -184,7 +184,7 @@
                   <p style="margin-top:25px">File Scan KTP Bendahara</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/ktp_bendahara/'.$skk_ormas->ktp_bendahara) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/ktp_bendahara/'.$skt_ormas->ktp_bendahara) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -193,7 +193,7 @@
                   <p style="margin-top:15px">File Scan Formulir Isian Data Ormas Ditandatangani Oleh Ketua dan Sekretaris Ormas atau sebutan pengurus lainnya</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/formulir/'.$skk_ormas->formulir) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/formulir/'.$skt_ormas->formulir) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -202,7 +202,7 @@
                   <p style="margin-top:25px">File Scan Rekomendasi dari Kemenag & Kemendikbud</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/rekomendasi/'.$skk_ormas->rekomendasi) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/rekomendasi/'.$skt_ormas->rekomendasi) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -211,7 +211,7 @@
                   <p style="margin-top:25px">File Scan Surat Pernyataan Sesuai Permendagri 57 tahun 2017</p>
                 </div>
                 <div class="col-md-6 form-group">
-                    <a href="{{ asset('/upload/surat_pernyataan_permendagri/'.$skk_ormas->surat_pernyataan_permendagri) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/surat_pernyataan_permendagri/'.$skt_ormas->surat_pernyataan_permendagri) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
@@ -220,14 +220,14 @@
                   <p style="margin-top:25px">File Scan Surat Pernyataan Kesediaan atau Persetujuan dari Pejabat Pemerintah, dan/atau tokoh masyarakat yang bersangkutan yang namanya dicantumkan dalam kepengurusan Ormas</p>
                 </div>
                 <div class="col-md-6 form-group" style="margin-top:25px">
-                    <a href="{{ asset('/upload/surat_pernyataan_kesediaan/'.$skk_ormas->surat_pernyataan_kesediaan) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                    <a href="{{ asset('/upload/surat_pernyataan_kesediaan/'.$skt_ormas->surat_pernyataan_kesediaan) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
 
               <br>
               
               <div class="text-center">
-                <a href="{{ url('status_skk_ormas_w')}}" class="btn btn-warning" style="padding: 9px 24px;">Kembali</a>
+                <a href="{{ url('status_skt_ormas_w')}}" class="btn btn-warning" style="padding: 9px 24px;">Kembali</a>
               </div>
 
           </div>

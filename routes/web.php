@@ -39,18 +39,31 @@ Route::get('/pengajuan_izin_penelitian_w/search', [BerandaController::class, 'se
 Route::get('/buat_pengajuan_izin_penelitian_w', [BerandaController::class, 'buat_pengajuan_izin_penelitian']);
 Route::get('/pengajuan_izin_penelitian_w/edit/{izin_penelitian}', [BerandaController::class, 'edit_izin_penelitian']);
 Route::put('/pengajuan_izin_penelitian_w/edit/{izin_penelitian}', [BerandaController::class, 'update_izin_penelitian']);
+Route::get('/pengajuan_izin_penelitian_w/detail/{izin_penelitian}', [BerandaController::class, 'detail_izin_penelitian']);
 
 Route::get('/pengajuan_skk_ormas_w', [BerandaController::class, 'pengajuan_skk_ormas']);
 Route::get('/pengajuan_skk_ormas_w/search', [BerandaController::class, 'search_pengajuan_skk_ormas']);
 Route::get('/buat_pengajuan_skk_ormas_w', [BerandaController::class, 'buat_pengajuan_skk_ormas']);
 Route::get('/pengajuan_skk_ormas_w/edit/{skk_ormas}', [BerandaController::class, 'edit_skk_ormas']);
 Route::put('/pengajuan_skk_ormas_w/edit/{skk_ormas}', [BerandaController::class, 'update_skk_ormas']);
+Route::get('/pengajuan_skk_ormas_w/detail/{skk_ormas}', [BerandaController::class, 'detail_skk_ormas']);
+
+Route::get('/pengajuan_skt_ormas_w', [BerandaController::class, 'pengajuan_skt_ormas']);
+Route::get('/pengajuan_skt_ormas_w/search', [BerandaController::class, 'search_pengajuan_skt_ormas']);
+Route::get('/buat_pengajuan_skt_ormas_w', [BerandaController::class, 'buat_pengajuan_skt_ormas']);
+Route::get('/pengajuan_skt_ormas_w/edit/{skt_ormas}', [BerandaController::class, 'edit_skt_ormas']);
+Route::put('/pengajuan_skt_ormas_w/edit/{skt_ormas}', [BerandaController::class, 'update_skt_ormas']);
+Route::get('/pengajuan_skt_ormas_w/detail/{skt_ormas}', [BerandaController::class, 'detail_skt_ormas']);
 
 Route::get('/status_izin_penelitian_w', [BerandaController::class, 'status_izin_penelitian']);
 Route::get('/status_izin_penelitian_w/search', [BerandaController::class, 'search_status_izin_penelitian']);
+Route::get('/status_skk_ormas_w', [BerandaController::class, 'status_skk_ormas']);
+Route::get('/status_skk_ormas_w/search', [BerandaController::class, 'search_status_skk_ormas']);
+Route::get('/status_skt_ormas_w', [BerandaController::class, 'status_skt_ormas']);
+Route::get('/status_skt_ormas_w/search', [BerandaController::class, 'search_status_skt_ormas']);
+
 Route::get('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'perbaikan']);
 Route::put('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'update']);
-Route::get('/pengajuan_izin_penelitian_w/detail/{izin_penelitian}', [BerandaController::class, 'detail']);
 Route::get('/registrasi_w', [BerandaController::class, 'registrasi']);
 Route::post('/registrasi_w', [RegistrasiController::class, 'store']);
 

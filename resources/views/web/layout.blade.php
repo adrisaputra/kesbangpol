@@ -70,8 +70,8 @@
               <li class="dropdown"><a href="#"><span>Status Dokumen</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
                   <li><a href="{{ url('status_izin_penelitian_w') }}">Izin Penelitian</a></li>
-                  <li><a href="{{ url('pengajuan_skko') }}">Surat Keterangan Keberadaan Ormas</a></li>
-                  <li><a href="{{ url('pengajuan_skto') }}">Surat Keterangan Terdaftar Ormas</a></li>
+                  <li><a href="{{ url('status_skk_ormas_w') }}">Surat Keterangan Keberadaan Ormas</a></li>
+                  <li><a href="{{ url('status_skt_ormas_w') }}">Surat Keterangan Terdaftar Ormas</a></li>
                 </ul>
               </li>
               <li><a href="{{ url('status_dokumen_w') }}">Pengaduan</a></li>
