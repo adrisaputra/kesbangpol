@@ -219,11 +219,35 @@ class IzinPenelitianController extends Controller
     }
 
     ## Hapus Data
-    public function delete(IzinPenelitian $izin_penelitian)
+    public function delete(Request $request, IzinPenelitian $izin_penelitian)
     {
         $id = $izin_penelitian->id;
 		$izin_penelitian->delete();
 		
         return redirect('/izin_penelitian')->with('status', 'Data Berhasil Dihapus');
+    }
+
+    ## Download DOC
+	public function download(Request $request, IzinPenelitian $izin_penelitian)
+    {
+		
+		$templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(public_path('FORMAT IZIN PENELITIAN.docx'));
+
+		$templateProcessor->setValues([
+			'nama' => $izin_penelitian->nama,
+			'tempat' => $izin_penelitian->tempat,
+			'judul' => $izin_penelitian->judul,
+			'lokasi' => $izin_penelitian->lokasi,
+			'waktu_kegiatan' => $izin_penelitian->waktu_kegiatan,
+			'bidang' => $izin_penelitian->bidang,
+			'status_kegiatan' => $izin_penelitian->status_kegiatan,
+			'menimbang' => $izin_penelitian->menimbang
+		]);
+		// $templateProcessor->setImageValue('CompanyLogo', 'http://localhost/umkm/assets/img/logo.png');
+		//$templateProcessor->setImageValue('UserLogo', array('path' => public_path('upload/foto/'.$izin_penelitian->file5), 'width' => 140, 'height' => 180, 'ratio' => false));
+
+		header("Content-Disposition: attachment; filename=".$izin_penelitian->nama.".docx");
+
+		$templateProcessor->saveAs('php://output');
     }
 }

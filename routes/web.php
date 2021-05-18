@@ -86,6 +86,7 @@ Route::get('/izin_penelitian_masuk', [IzinPenelitianController::class, 'index'])
 Route::get('/izin_penelitian_di_proses', [IzinPenelitianController::class, 'index']);
 Route::get('/izin_penelitian_di_verifikasi', [IzinPenelitianController::class, 'index']);
 Route::get('/izin_penelitian_selesai', [IzinPenelitianController::class, 'index']);
+Route::get('/izin_penelitian_selesai/download/{izin_penelitian}', [IzinPenelitianController::class, 'download']);
 
 Route::get('/izin_penelitian_masuk/search', [IzinPenelitianController::class, 'search']);
 Route::get('/izin_penelitian_di_proses/search', [IzinPenelitianController::class, 'search']);

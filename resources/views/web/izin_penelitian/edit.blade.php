@@ -41,7 +41,93 @@
                 </div>
               </div>
 
+            <form action="{{ url('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)}}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+		        <input type="hidden" name="_method" value="PUT">
+ <input type="hidden" name="file" class="form-control" value="6">
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Nama Pemohon</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" name="nama" class="form-control" value="{{ $izin_penelitian->nama }}">
+                  @if ($errors->has('nama')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('nama') }}</label>@endif
+                </div>
+              </div>
 
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Alamat Pemohon</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" name="tempat" class="form-control" value="{{ $izin_penelitian->tempat }}">
+                  @if ($errors->has('tempat')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('tempat') }}</label>@endif
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Judul Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" name="judul" class="form-control" value="{{ $izin_penelitian->judul }}">
+                  @if ($errors->has('judul')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('judul') }}</label>@endif
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Lokasi Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" name="lokasi" class="form-control" value="{{ $izin_penelitian->lokasi }}">
+                  @if ($errors->has('lokasi')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('lokasi') }}</label>@endif
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Waktu Kegiatan</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" name="waktu_kegiatan" class="form-control" value="{{ $izin_penelitian->waktu_kegiatan }}">
+                  @if ($errors->has('waktu_kegiatan')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('waktu_kegiatan') }}</label>@endif
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Bidang Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" name="bidang" class="form-control" value="{{ $izin_penelitian->bidang }}">
+                  @if ($errors->has('bidang')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('bidang') }}</label>@endif
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Status Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" name="status_kegiatan" class="form-control" value="{{ $izin_penelitian->status_kegiatan }}">
+                  @if ($errors->has('status_kegiatan')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('status_kegiatan') }}</label>@endif
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Menimbang</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <textarea name="menimbang" class="form-control">{{ $izin_penelitian->menimbang }}</textarea>
+                  @if ($errors->has('menimbang')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('menimbang') }}</label>@endif
+                </div>
+              </div><br>
+              <center><button type="submit" class="btn btn-success" style="background: #d41e10;border: 0;padding: 10px 24px;color: #fff;transition: 0.4s;border-radius: 4px;">Simpan Data</button></center>
+            
+            </form>
+            <hr>
             <form action="{{ url('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
 		        <input type="hidden" name="_method" value="PUT">
@@ -97,7 +183,6 @@
                 @endif
 
               </div>
-
             </form>
 
             <form action="{{ url('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)}}" method="POST" enctype="multipart/form-data">
@@ -193,7 +278,20 @@
 		        <input type="hidden" name="_method" value="PUT">
 						
               <div class="text-center">
-              @if($izin_penelitian->surat_perguruan_tinggi && $izin_penelitian->proposal_penelitian && $izin_penelitian->ktp_peneliti && $izin_penelitian->izin_penelitian && $izin_penelitian->surat_pernyataan)
+              @if($izin_penelitian->surat_perguruan_tinggi 
+                && $izin_penelitian->proposal_penelitian 
+                && $izin_penelitian->ktp_peneliti 
+                && $izin_penelitian->izin_penelitian 
+                && $izin_penelitian->surat_pernyataan
+                && $izin_penelitian->nama
+                && $izin_penelitian->tempat
+                && $izin_penelitian->judul
+                && $izin_penelitian->lokasi
+                && $izin_penelitian->waktu_kegiatan
+                && $izin_penelitian->bidang
+                && $izin_penelitian->status_kegiatan
+                && $izin_penelitian->menimbang
+                )
                 <input type="hidden" name="status" class="form-control" value="1">
                 <button type="submit" class="btn btn-success" style="background: #d41e10;border: 0;padding: 10px 24px;color: #fff;transition: 0.4s;border-radius: 4px;" onclick="return confirm('Anda Yakin ?');">Kirim Permohonan</button>
               @endif

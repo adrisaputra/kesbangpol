@@ -74,6 +74,7 @@
 							<span style="font-size:11px"><i>Ukuran File Tidak Boleh Lebih Dari 500 Kb (pdf)</i></span>
 
 							<div style="padding-top:10px">
+								<a href="{{ url('/izin_penelitian_selesai/download/'.$izin_penelitian->id) }}" target="_blank" class="btn btn-success btn-flat btn-sm" title="Kembali">Download Format</a>
 								<button type="submit" class="btn btn-primary btn-flat btn-sm" title="Tambah Data"> Upload Dokumen Rekomendasi</button>
 								<a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning btn-flat btn-sm" title="Kembali">Kembali</a>
 							</div>

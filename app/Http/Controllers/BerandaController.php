@@ -105,6 +105,19 @@ class BerandaController extends Controller
 
     public function update_izin_penelitian(Request $request, IzinPenelitian $izin_penelitian)
     {
+        if($request->file == 6 ){
+            $this->validate($request, [
+                'nama' => 'required',
+                'tempat' => 'required',
+                'judul' => 'required',
+                'lokasi' => 'required',
+                'waktu_kegiatan' => 'required',
+                'bidang' => 'required',
+                'status_kegiatan' => 'required',
+                'menimbang' => 'required',
+            ]);
+        }
+
         if($request->file == 1){
             $this->validate($request, [
                 'surat_perguruan_tinggi' => 'required|mimes:pdf|max:500'
