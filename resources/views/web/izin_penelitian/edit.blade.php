@@ -156,6 +156,36 @@
               </div>
 
               </form>
+              
+            <form action="{{ url('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)}}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+		        <input type="hidden" name="_method" value="PUT">
+						
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:25px">Surat Pernyataan</p>
+                </div>
+
+                @if($izin_penelitian->surat_pernyataan)
+                  <div class="col-md-7 form-group">
+                      <a href="{{ asset('/upload/surat_pernyataan/'.$izin_penelitian->surat_pernyataan) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                  </div>
+                @else
+                  <div class="col-md-4 form-group">
+                    <i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 500 Kb (pdf)</i><br>
+                    <input type="hidden" name="file" class="form-control" value="5">
+                    <input type="file" name="surat_pernyataan" class="form-control">
+                    @if ($errors->has('surat_pernyataan')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('surat_pernyataan') }}</label>@endif
+                  </div>
+                  <div class="col-md-3 form-group">
+                    <button type="submit" class="btn btn-success" style="background: #00a65a;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Upload</button>
+                  </div>
+                @endif
+
+              </div>
+
+            </form>
+
               <br>
               
             <form action="{{ url('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)}}" method="POST" enctype="multipart/form-data">
@@ -163,7 +193,7 @@
 		        <input type="hidden" name="_method" value="PUT">
 						
               <div class="text-center">
-              @if($izin_penelitian->surat_perguruan_tinggi && $izin_penelitian->proposal_penelitian && $izin_penelitian->ktp_peneliti && $izin_penelitian->izin_penelitian)
+              @if($izin_penelitian->surat_perguruan_tinggi && $izin_penelitian->proposal_penelitian && $izin_penelitian->ktp_peneliti && $izin_penelitian->izin_penelitian && $izin_penelitian->surat_pernyataan)
                 <input type="hidden" name="status" class="form-control" value="1">
                 <button type="submit" class="btn btn-success" style="background: #d41e10;border: 0;padding: 10px 24px;color: #fff;transition: 0.4s;border-radius: 4px;" onclick="return confirm('Anda Yakin ?');">Kirim Permohonan</button>
               @endif

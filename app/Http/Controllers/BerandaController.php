@@ -95,7 +95,7 @@ class BerandaController extends Controller
         return $view;
     }
 
-    public function perbaikan(IzinPenelitian $izin_penelitian)
+    public function perbaikan_izin_penelitian(IzinPenelitian $izin_penelitian)
     {
         $title = "Perbaiki Data";
         $view=view('web.izin_penelitian.perbaikan', compact('title','izin_penelitian'));
@@ -121,6 +121,10 @@ class BerandaController extends Controller
             $this->validate($request, [
                 'izin_penelitian' => 'required|mimes:pdf|max:500'
             ]);
+        } else if($request->file == 5){
+            $this->validate($request, [
+                'surat_pernyataan' => 'required|mimes:pdf|max:500'
+            ]);
         }
         
 
@@ -141,6 +145,11 @@ class BerandaController extends Controller
 
         if($izin_penelitian->izin_penelitian && $request->file('izin_penelitian')!=""){
             $image_path = public_path().'/upload/izin_penelitian/'.$izin_penelitian->izin_penelitian;
+            unlink($image_path);
+        }
+
+        if($izin_penelitian->surat_pernyataan && $request->file('surat_pernyataan')!=""){
+            $image_path = public_path().'/upload/surat_pernyataan/'.$izin_penelitian->surat_pernyataan;
             unlink($image_path);
         }
 
@@ -176,6 +185,14 @@ class BerandaController extends Controller
             $filename = time().'.'.$request->izin_penelitian->getClientOriginalExtension();
             $request->izin_penelitian->move(public_path('upload/izin_penelitian'), $filename);
             $izin_penelitian->izin_penelitian = $filename;
+		}
+		
+		if($request->file('surat_pernyataan') == ""){}
+    	else
+    	{	
+            $filename = time().'.'.$request->surat_pernyataan->getClientOriginalExtension();
+            $request->surat_pernyataan->move(public_path('upload/surat_pernyataan'), $filename);
+            $izin_penelitian->surat_pernyataan = $filename;
 		}
 		
     	$izin_penelitian->save();
@@ -271,6 +288,14 @@ class BerandaController extends Controller
 
     }
 
+    public function perbaikan_skk_ormas(SkkOrmas $skk_ormas)
+    {
+        $title = "Perbaiki Data";
+        $view=view('web.skk_ormas.perbaikan', compact('title','skk_ormas'));
+        $view=$view->render();
+        return $view;
+    }
+
     public function edit_skk_ormas(SkkOrmas $skk_ormas)
     {
         $title = "Upload Data Pengajuan Surat Keterangan Keberadaan Ormas";
@@ -288,6 +313,10 @@ class BerandaController extends Controller
         } else if($request->file == 2){
             $this->validate($request, [
                 'logo' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
+        } else if($request->file == 3){
+            $this->validate($request, [
+                'bendera' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
             ]);
         } else if($request->file == 4){
             $this->validate($request, [
@@ -349,9 +378,21 @@ class BerandaController extends Controller
             $this->validate($request, [
                 'formulir' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
             ]);
+        } else if($request->file == 19){
+            $this->validate($request, [
+                'rekomendasi' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
         } else if($request->file == 20){
             $this->validate($request, [
                 'surat_pernyataan_permendagri' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
+        } else if($request->file == 21){
+            $this->validate($request, [
+                'surat_pernyataan_kesediaan' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
+        } else if($request->file == 22){
+            $this->validate($request, [
+                'skt' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
             ]);
         }
 
@@ -457,6 +498,11 @@ class BerandaController extends Controller
 
         if($skk_ormas->surat_pernyataan_kesediaan && $request->file('surat_pernyataan_kesediaan')!=""){
             $image_path = public_path().'/upload/surat_pernyataan_kesediaan/'.$skk_ormas->surat_pernyataan_kesediaan;
+            unlink($image_path);
+        }
+
+        if($skk_ormas->skt && $request->file('skt')!=""){
+            $image_path = public_path().'/upload/skt/'.$skk_ormas->skt;
             unlink($image_path);
         }
 
@@ -630,6 +676,14 @@ class BerandaController extends Controller
             $skk_ormas->surat_pernyataan_kesediaan = $filename;
 		}
 		
+		if($request->file('skt') == ""){}
+    	else
+    	{	
+            $filename = time().'.'.$request->skt->getClientOriginalExtension();
+            $request->skt->move(public_path('upload/skt'), $filename);
+            $skk_ormas->skt = $filename;
+		}
+		
     	$skk_ormas->save();
 		
         if($request->status==1){
@@ -690,6 +744,14 @@ class BerandaController extends Controller
 
     }
 
+    public function perbaikan_skt_ormas(SktOrmas $skt_ormas)
+    {
+        $title = "Perbaiki Data";
+        $view=view('web.skt_ormas.perbaikan', compact('title','skt_ormas'));
+        $view=$view->render();
+        return $view;
+    }
+
     public function status_skt_ormas()
     {
         $title = "Status Surat Keterangan Terdaftar Ormas";
@@ -742,6 +804,10 @@ class BerandaController extends Controller
         } else if($request->file == 2){
             $this->validate($request, [
                 'logo' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
+        } else if($request->file == 3){
+            $this->validate($request, [
+                'bendera' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
             ]);
         } else if($request->file == 4){
             $this->validate($request, [
@@ -803,9 +869,21 @@ class BerandaController extends Controller
             $this->validate($request, [
                 'formulir' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
             ]);
+        } else if($request->file == 19){
+            $this->validate($request, [
+                'rekomendasi' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
         } else if($request->file == 20){
             $this->validate($request, [
                 'surat_pernyataan_permendagri' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
+        } else if($request->file == 21){
+            $this->validate($request, [
+                'surat_pernyataan_kesediaan' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
+            ]);
+        } else if($request->file == 22){
+            $this->validate($request, [
+                'skt' => 'required|mimes:jpg,jpeg,png,pdf|max:500'
             ]);
         }
 

@@ -168,15 +168,21 @@
                             </ul>
                         </li>  
                         <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*')) ? 'active' : '' }}">
-                            <a href="#"> <i class="fa fa-database"></i> <span>SKT Ormas</span>
+                            <a href="#"> <i class="fa fa-database"></i> <span>SKK Ormas</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="{{ (request()->is('data')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
-                                <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai_bidang')}}"><i class="fa fa-circle-o"></i> Data Di Proses</a></li>
-                                <li class="{{ (request()->is('rekapitulasi_esselon*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_esselon')}}"><i class="fa fa-circle-o"></i> Selesai</a></li>
+                            @if(Auth::user()->group==1 || Auth::user()->group==2)
+                                <li class="{{ (request()->is('skk_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skk_ormas_di_proses*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_di_proses')}}"><i class="fa fa-circle-o"></i> Data Di Proses</a></li>
+                                <li class="{{ (request()->is('skk_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
+                                <li class="{{ (request()->is('skk_ormas_selesai*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_selesai')}}"><i class="fa fa-circle-o"></i> Selesai</a></li>
+                            @else
+                                <li class="{{ (request()->is('skk_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skk_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
+                            @endif
                             </ul>
                         </li>  
                         <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*')) ? 'active' : '' }}">
@@ -186,9 +192,15 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="{{ (request()->is('data')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
-                                <li class="{{ (request()->is('rekapitulasi_jumlah_pegawai_bidang*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_jumlah_pegawai_bidang')}}"><i class="fa fa-circle-o"></i> Data Di Proses</a></li>
-                                <li class="{{ (request()->is('rekapitulasi_esselon*')) ? 'active' : '' }}"><a href="{{ url('rekapitulasi_esselon')}}"><i class="fa fa-circle-o"></i> Selesai</a></li>
+                            @if(Auth::user()->group==1 || Auth::user()->group==2)
+                                <li class="{{ (request()->is('skt_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skt_ormas_di_proses*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_di_proses')}}"><i class="fa fa-circle-o"></i> Data Di Proses</a></li>
+                                <li class="{{ (request()->is('skt_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
+                                <li class="{{ (request()->is('skt_ormas_selesai*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_selesai')}}"><i class="fa fa-circle-o"></i> Selesai</a></li>
+                            @else
+                                <li class="{{ (request()->is('skt_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skt_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
+                            @endif
                             </ul>
                         </li>
                         @if(Auth::user()->group==1)

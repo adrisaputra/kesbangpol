@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\IzinPenelitianController;
+use App\Http\Controllers\SkkOrmasController;
+use App\Http\Controllers\SktOrmasController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -62,8 +64,13 @@ Route::get('/status_skk_ormas_w/search', [BerandaController::class, 'search_stat
 Route::get('/status_skt_ormas_w', [BerandaController::class, 'status_skt_ormas']);
 Route::get('/status_skt_ormas_w/search', [BerandaController::class, 'search_status_skt_ormas']);
 
-Route::get('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'perbaikan']);
-Route::put('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'update']);
+Route::get('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'perbaikan_izin_penelitian']);
+Route::put('/pengajuan_izin_penelitian_w/perbaikan/{izin_penelitian}', [BerandaController::class, 'update_izin_penelitian']);
+Route::get('/pengajuan_skk_ormas_w/perbaikan/{skk_ormas}', [BerandaController::class, 'perbaikan_skk_ormas']);
+Route::put('/pengajuan_skk_ormas_w/perbaikan/{skk_ormas}', [BerandaController::class, 'update_skk_ormas']);
+Route::get('/pengajuan_skt_ormas_w/perbaikan/{skt_ormas}', [BerandaController::class, 'perbaikan_skt_ormas']);
+Route::put('/pengajuan_skt_ormas_w/perbaikan/{skt_ormas}', [BerandaController::class, 'update_skt_ormas']);
+
 Route::get('/registrasi_w', [BerandaController::class, 'registrasi']);
 Route::post('/registrasi_w', [RegistrasiController::class, 'store']);
 
@@ -95,6 +102,50 @@ Route::get('/izin_penelitian_selesai/detail/{izin_penelitian}', [IzinPenelitianC
 
 Route::get('/izin_penelitian_masuk/proses/{izin_penelitian}', [IzinPenelitianController::class, 'proses']);
 Route::put('/izin_penelitian_di_verifikasi/edit/{izin_penelitian}', [IzinPenelitianController::class, 'update']);
+
+## SKK Ormas
+Route::get('/skk_ormas_masuk', [SkkOrmasController::class, 'index']);
+Route::get('/skk_ormas_di_proses', [SkkOrmasController::class, 'index']);
+Route::get('/skk_ormas_di_verifikasi', [SkkOrmasController::class, 'index']);
+Route::get('/skk_ormas_selesai', [SkkOrmasController::class, 'index']);
+
+Route::get('/skk_ormas_masuk/search', [SkkOrmasController::class, 'search']);
+Route::get('/skk_ormas_di_proses/search', [SkkOrmasController::class, 'search']);
+Route::get('/skk_ormas_di_verifikasi/search', [SkkOrmasController::class, 'search']);
+Route::get('/skk_ormas_selesai/search', [SkkOrmasController::class, 'search']);
+
+Route::get('/skk_ormas_masuk/create', [SkkOrmasController::class, 'create']);
+Route::post('/skk_ormas_masuk', [SkkOrmasController::class, 'store']);
+
+Route::get('/skk_ormas_masuk/detail/{skk_ormas}', [SkkOrmasController::class, 'detail']);
+Route::get('/skk_ormas_di_proses/detail/{skk_ormas}', [SkkOrmasController::class, 'detail']);
+Route::get('/skk_ormas_di_verifikasi/detail/{skk_ormas}', [SkkOrmasController::class, 'detail']);
+Route::get('/skk_ormas_selesai/detail/{skk_ormas}', [SkkOrmasController::class, 'detail']);
+
+Route::get('/skk_ormas_masuk/proses/{skk_ormas}', [SkkOrmasController::class, 'proses']);
+Route::put('/skk_ormas_di_verifikasi/edit/{skk_ormas}', [SkkOrmasController::class, 'update']);
+
+## SKT Ormas
+Route::get('/skt_ormas_masuk', [SktOrmasController::class, 'index']);
+Route::get('/skt_ormas_di_proses', [SktOrmasController::class, 'index']);
+Route::get('/skt_ormas_di_verifikasi', [SktOrmasController::class, 'index']);
+Route::get('/skt_ormas_selesai', [SktOrmasController::class, 'index']);
+
+Route::get('/skt_ormas_masuk/search', [SktOrmasController::class, 'search']);
+Route::get('/skt_ormas_di_proses/search', [SktOrmasController::class, 'search']);
+Route::get('/skt_ormas_di_verifikasi/search', [SktOrmasController::class, 'search']);
+Route::get('/skt_ormas_selesai/search', [SktOrmasController::class, 'search']);
+
+Route::get('/skt_ormas_masuk/create', [SktOrmasController::class, 'create']);
+Route::post('/skt_ormas_masuk', [SktOrmasController::class, 'store']);
+
+Route::get('/skt_ormas_masuk/detail/{skt_ormas}', [SktOrmasController::class, 'detail']);
+Route::get('/skt_ormas_di_proses/detail/{skt_ormas}', [SktOrmasController::class, 'detail']);
+Route::get('/skt_ormas_di_verifikasi/detail/{skt_ormas}', [SktOrmasController::class, 'detail']);
+Route::get('/skt_ormas_selesai/detail/{skt_ormas}', [SktOrmasController::class, 'detail']);
+
+Route::get('/skt_ormas_masuk/proses/{skt_ormas}', [SktOrmasController::class, 'proses']);
+Route::put('/skt_ormas_di_verifikasi/edit/{skt_ormas}', [SktOrmasController::class, 'update']);
 
 ## User
 Route::get('/user', [UserController::class, 'index']);

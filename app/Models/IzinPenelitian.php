@@ -15,6 +15,7 @@ class IzinPenelitian extends Model
         'proposal_penelitian',
         'ktp_peneliti',
         'izin_penelitian',
+        'surat_pernyataan',
         'dokumen_rekomendasi',
         'perbaikan',
         'tanggal',

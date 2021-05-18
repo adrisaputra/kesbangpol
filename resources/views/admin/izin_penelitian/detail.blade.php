@@ -38,12 +38,6 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 control-label">{{ __('Surat Dari Perguruan Tinggi/Instansi Asal Peneliti')}}</label>
-						<div class="col-sm-8">
-							<a href="{{ url('/upload/surat_perguruan_tinggi/'.$izin_penelitian->surat_perguruan_tinggi) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="col-sm-4 control-label">{{ __('Proposal Penelitian')}}</label>
 						<div class="col-sm-8">
 							<a href="{{ url('/upload/proposal_penelitian/'.$izin_penelitian->proposal_penelitian) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
@@ -56,12 +50,19 @@
 						</div>
 					</div>
 
-					@if(Request::segment(1)=="izin_penelitian_di_verifikasi" && Auth::user()->group==2)
-
 					<div class="form-group">
 						<label class="col-sm-4 control-label">{{ __('Formulir Permohonan Izin Penelitian')}}</label>
 						<div class="col-sm-8">
 							<a href="{{ url('/upload/izin_penelitian/'.$izin_penelitian->izin_penelitian) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
+						</div>
+					</div>
+
+					@if(Request::segment(1)=="izin_penelitian_di_verifikasi" && Auth::user()->group==2)
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Surat Pernyataan')}}</label>
+						<div class="col-sm-8">
+							<a href="{{ url('/upload/surat_pernyataan/'.$izin_penelitian->surat_pernyataan) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
 						</div>
 					</div>
 
@@ -82,9 +83,9 @@
 					@else
 
 					<div class="form-group">
-						<label class="col-sm-4 control-label">{{ __('Formulir Permohonan Izin Penelitian')}}</label>
+						<label class="col-sm-4 control-label">{{ __('Surat Pernyataan')}}</label>
 						<div class="col-sm-8">
-							<a href="{{ url('/upload/izin_penelitian/'.$izin_penelitian->izin_penelitian) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
+							<a href="{{ url('/upload/surat_pernyataan/'.$izin_penelitian->surat_pernyataan) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
 							
 							<div style="padding-top:10px">
 								@if(Request::segment(1)=="izin_penelitian_masuk")

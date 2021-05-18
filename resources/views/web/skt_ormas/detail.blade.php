@@ -53,14 +53,16 @@
                 </div>
               </div>
 
+              @if($skt_ormas->bendera)
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <p style="margin-top:25px">File Scan Logo</p>
+                  <p style="margin-top:25px">File Scan Bendera</p>
                 </div>
                 <div class="col-md-6 form-group">
                     <a href="{{ asset('/upload/bendera/'.$skt_ormas->bendera) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
+              @endif
 
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -197,6 +199,7 @@
                 </div>
               </div>
 
+              @if($skt_ormas->rekomendasi)
               <div class="row">
                 <div class="col-md-6 form-group">
                   <p style="margin-top:25px">File Scan Rekomendasi dari Kemenag & Kemendikbud</p>
@@ -205,6 +208,7 @@
                     <a href="{{ asset('/upload/rekomendasi/'.$skt_ormas->rekomendasi) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
+              @endif
 
               <div class="row">
                 <div class="col-md-6 form-group">
@@ -215,6 +219,7 @@
                 </div>
               </div>
 
+              @if($skt_ormas->surat_pernyataan_kesediaan)
               <div class="row">
                 <div class="col-md-6 form-group">
                   <p style="margin-top:25px">File Scan Surat Pernyataan Kesediaan atau Persetujuan dari Pejabat Pemerintah, dan/atau tokoh masyarakat yang bersangkutan yang namanya dicantumkan dalam kepengurusan Ormas</p>
@@ -223,6 +228,7 @@
                     <a href="{{ asset('/upload/surat_pernyataan_kesediaan/'.$skt_ormas->surat_pernyataan_kesediaan) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
                 </div>
               </div>
+              @endif
 
               <br>
               

@@ -651,6 +651,35 @@
 
             </form>
 
+            <form action="{{ url('/pengajuan_skk_ormas_w/edit/'.$skk_ormas->id)}}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+		        <input type="hidden" name="_method" value="PUT">
+						
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:15px">File Scan Surat Keterangan Terdaftar (SKT)/Pengesahan Badan Hukum</p>
+                </div>
+                
+                @if($skk_ormas->skt)
+                  <div class="col-md-7 form-group">
+                      <a href="{{ asset('/upload/skt/'.$skk_ormas->skt) }}" target="_blank" class="btn btn-danger" style="background: #3c8dbc;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Lihat Dokumen<i class="icofont-download"></i></a>
+                  </div>
+                @else
+                  <div class="col-md-4 form-group">
+                    <i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 500 Kb (jpg,jpeg,png,pdf)</i><br>
+                    <input type="hidden" name="file" class="form-control" value="22">
+                    <input type="file" name="skt" class="form-control">
+                    @if ($errors->has('skt')) <label style="font-size:12px;color: #f44336;">{{ $errors->first('skt') }}</label>@endif
+                  </div>
+                  <div class="col-md-3 form-group">
+                      <button type="submit" class="btn btn-success" style="background: #00a65a;border: 0;color: #fff;transition: 0.4s;border-radius: 4px;margin-top:24px">Upload</button>
+                  </div>
+                @endif
+
+              </div>
+
+            </form>
+
             <br>
               
             <form action="{{ url('/pengajuan_skk_ormas_w/edit/'.$skk_ormas->id)}}" method="POST" enctype="multipart/form-data">
@@ -675,7 +704,8 @@
                   && $skk_ormas->foto_bendahara
                   && $skk_ormas->ktp_bendahara
                   && $skk_ormas->formulir
-                  && $skk_ormas->surat_pernyataan_permendagri)
+                  && $skk_ormas->surat_pernyataan_permendagri
+                  && $skk_ormas->skt)
                 <input type="hidden" name="status" class="form-control" value="1">
                 <button type="submit" class="btn btn-success" style="background: #d41e10;border: 0;padding: 10px 24px;color: #fff;transition: 0.4s;border-radius: 4px;" onclick="return confirm('Anda Yakin ?');">Kirim Permohonan</button>
               @endif
