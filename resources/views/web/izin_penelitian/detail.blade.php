@@ -37,6 +37,78 @@
 
               <div class="row">
                 <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Nama Pemohon</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" class="form-control" value="{{ $izin_penelitian->nama }}" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Alamat Pemohon</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" class="form-control" value="{{ $izin_penelitian->tempat }}" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Judul Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                <textarea name="judul" class="form-control" disabled>{{ $izin_penelitian->judul }}</textarea>
+                </div>
+              </div>
+
+              <div class="row"  style="margin-top:5px">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Lokasi Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" class="form-control" value="{{ $izin_penelitian->lokasi }}" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Waktu Kegiatan</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" class="form-control" value="{{ $izin_penelitian->waktu_kegiatan }}" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Bidang Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" class="form-control" value="{{ $izin_penelitian->bidang }}" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Status Penelitian</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <input type="text" class="form-control" value="{{ $izin_penelitian->status_kegiatan }}" disabled>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
+                  <p style="margin-top:5px">Menimbang</p>
+                </div>
+                <div class="col-md-7 form-group">
+                  <textarea name="menimbang" class="form-control" disabled>{{ $izin_penelitian->menimbang }}</textarea>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-5 form-group">
                   <p style="margin-top:25px">Surat Dari Perguruan Tinggi/Instansi Asal Peneliti</p>
                 </div>
                 <div class="col-md-7 form-group">

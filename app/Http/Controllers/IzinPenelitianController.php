@@ -250,4 +250,51 @@ class IzinPenelitianController extends Controller
 
 		$templateProcessor->saveAs('php://output');
     }
+
+    ## Total Data Masuk
+    public function total_data_masuk()
+    {
+        if(Auth::user()->group==2){
+            $izin_penelitian = IzinPenelitian::
+                                where(function ($query) {
+                                    $query->where('status',1)
+                                        ->orWhere('status',3);
+                                })->count();
+            
+        }else{
+            $izin_penelitian = IzinPenelitian::where('status', 2)->count();
+        }
+        
+		if($izin_penelitian>0){
+			echo "<small class='label pull-right bg-red'>".$izin_penelitian."</small>";
+		} else {
+            echo "<i class='fa fa-angle-left pull-right'></i>";
+        }
+    }
+
+    ## Jumlah Data Masuk
+    public function jumlah_data_masuk()
+    {
+        if(Auth::user()->group==2){
+            $izin_penelitian = IzinPenelitian::where('status',1)->count();
+            
+        }else{
+            $izin_penelitian = IzinPenelitian::where('status', 2)->count();
+        }
+        
+		if($izin_penelitian>0){
+			echo "<small class='label pull-right bg-blue'>".$izin_penelitian."</small>";
+		} 
+    }
+
+    ## Jumlah Data Di Verifikasi
+    public function jumlah_data_diverifikasi()
+    {
+        $izin_penelitian = IzinPenelitian::where('status', 3)->count();
+        
+		if($izin_penelitian>0){
+			echo "<small class='label pull-right bg-blue'>".$izin_penelitian."</small>";
+		} 
+    }
+
 }

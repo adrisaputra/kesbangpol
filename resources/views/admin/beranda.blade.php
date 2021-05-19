@@ -17,19 +17,18 @@
 	<div class="box-body">
 			<!-- Small boxes (Stat box) -->
 			<div class="row">
-			@if(Auth::user()->group==1)
 				<div class="col-lg-4 col-xs-6">
 				<!-- small box -->
 					<div class="small-box bg-aqua">
 						<div class="inner">
-						<h3></h3>
+						<h3>{{ $izin_perizinan }}</h3>
 
-						<p>Total ASN</p>
+						<p>Izin Penelitian Masuk</p>
 						</div>
 						<div class="icon">
-						<i class="fa fa-users"></i>
+						<i class="fa fa-inbox"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('izin_penelitian_masuk') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->
@@ -37,14 +36,14 @@
 					<!-- small box -->
 					<div class="small-box bg-green">
 						<div class="inner">
-						<h3></h3>
+						<h3>{{ $skk_ormas }}</h3>
 
-						<p>Total PNS</p>
+						<p>Surat Keterangan Keberadaan Ormas Masuk</p>
 						</div>
 						<div class="icon">
-						<i class="fa fa-users"></i>
+						<i class="fa fa-inbox"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('skk_ormas_masuk') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
 				<!-- ./col -->
@@ -52,63 +51,16 @@
 					<!-- small box -->
 					<div class="small-box bg-yellow">
 						<div class="inner">
-						<h3></h3>
+						<h3>{{ $skt_ormas }}</h3>
 
-						<p>Total CPNS</p>
+						<p>Surat Keterangan Terdaftar Ormas Masuk</p>
 						</div>
 						<div class="icon">
-						<i class="fa fa-users"></i>
+						<i class="fa fa-inbox"></i>
 						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+						<a href="{{ url('skt_ormas_masuk') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
 					</div>
 				</div>
-				<!-- ./col -->
-			@elseif(Auth::user()->group==5)
-				<div class="col-lg-4 col-xs-6">
-				<!-- small box -->
-					<div class="small-box bg-aqua">
-						<div class="inner">
-						<h3>{{ $pegawai }}</h3>
-
-						<p>Total Pegawai</p>
-						</div>
-						<div class="icon">
-						<i class="fa fa-users"></i>
-						</div>
-						<a href="{{ url('pegawai') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-			@elseif(Auth::user()->group==2 || Auth::user()->group==4 || Auth::user()->group==6)
-				<div class="col-lg-6 col-xs-6">
-				<!-- small box -->
-					<div class="small-box bg-red">
-						<div class="inner">
-						<h3></h3>
-
-						<p>Pengambilan Belum Di Proses</p>
-						</div>
-						<div class="icon">
-						<i class="fa"></i>
-						</div>
-						<a href="{{ url('pengambilan') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-				<!-- ./col -->
-				<div class="col-lg-6 col-xs-6">
-					<!-- small box -->
-					<div class="small-box bg-green">
-						<div class="inner">
-						<h3></h3>
-
-						<p>Pengambilan Di Proses</p>
-						</div>
-						<div class="icon">
-						<i class="fa fa-box"></i>
-						</div>
-						<a href="{{ url('pengambilan') }}" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
-					</div>
-				</div>
-			@endif
 			</div>
 			<!-- /.row -->
 	</section>

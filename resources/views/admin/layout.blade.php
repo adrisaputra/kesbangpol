@@ -88,7 +88,7 @@
             <header class="main-header">
                 <a href="" class="logo">
                     <span class="logo-mini"><b>SIM</b></span>
-                    <span class="logo-lg"><b>SIMPEG</b></span>
+                    <span class="logo-lg"><b>SIMKES</b></span>
                 </a>
                 
                 <nav class="navbar navbar-static-top">
@@ -149,56 +149,74 @@
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header">MAIN NAVIGATION</li>
                         <li class="{{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('dashboard')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                        <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*')) ? 'active' : '' }}">
+                        <li class="treeview  {{ (request()->is('izin_penelitian_masuk*','izin_penelitian_di_proses*','izin_penelitian_di_verifikasi*','izin_penelitian_selesai*','izin_penelitian_masuk*','izin_penelitian_di_verifikasi*')) ? 'active' : '' }}">
                             <a href="#"> <i class="fa fa-database"></i> <span>Izin Penelitian</span>
-                                <span class="pull-right-container">
+                                <span class="pull-right-container" id="notif">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
                             @if(Auth::user()->group==1 || Auth::user()->group==2)
-                                <li class="{{ (request()->is('izin_penelitian_masuk')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('izin_penelitian_masuk*')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk
+                                <span class="pull-right-container" id="notif2">
+                                </span></a></li>
                                 <li class="{{ (request()->is('izin_penelitian_di_proses*')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_di_proses')}}"><i class="fa fa-circle-o"></i> Data Di Proses</a></li>
-                                <li class="{{ (request()->is('izin_penelitian_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
+                                <li class="{{ (request()->is('izin_penelitian_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi
+                                <span class="pull-right-container" id="notif3">
+                                </span></a></li>
                                 <li class="{{ (request()->is('izin_penelitian_selesai*')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_selesai')}}"><i class="fa fa-circle-o"></i> Selesai</a></li>
                             @else
-                                <li class="{{ (request()->is('izin_penelitian_masuk')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('izin_penelitian_masuk*')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk
+                                <span class="pull-right-container" id="notif2">
+                                </span></a></li>
                                 <li class="{{ (request()->is('izin_penelitian_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('izin_penelitian_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
                             @endif
                             </ul>
                         </li>  
-                        <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*')) ? 'active' : '' }}">
+                        <li class="treeview  {{ (request()->is('skk_ormas_masuk*','skk_ormas_di_proses*','skk_ormas_di_verifikasi*','skk_ormas_selesai*','skk_ormas_masuk*','skk_ormas_di_verifikasi*')) ? 'active' : '' }}">
                             <a href="#"> <i class="fa fa-database"></i> <span>SKK Ormas</span>
-                                <span class="pull-right-container">
+                                <span class="pull-right-container" id="notif4">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
                             @if(Auth::user()->group==1 || Auth::user()->group==2)
-                                <li class="{{ (request()->is('skk_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skk_ormas_masuk*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk
+                                <span class="pull-right-container" id="notif5">
+                                </span></a></li>
                                 <li class="{{ (request()->is('skk_ormas_di_proses*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_di_proses')}}"><i class="fa fa-circle-o"></i> Data Di Proses</a></li>
-                                <li class="{{ (request()->is('skk_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
+                                <li class="{{ (request()->is('skk_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi
+                                <span class="pull-right-container" id="notif6">
+                                </span></a></li>
                                 <li class="{{ (request()->is('skk_ormas_selesai*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_selesai')}}"><i class="fa fa-circle-o"></i> Selesai</a></li>
                             @else
-                                <li class="{{ (request()->is('skk_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skk_ormas_masuk*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk
+                                <span class="pull-right-container" id="notif5">
+                                </span></a></li>
                                 <li class="{{ (request()->is('skk_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skk_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
                             @endif
                             </ul>
                         </li>  
-                        <li class="treeview  {{ (request()->is('rekapitulasi_jumlah_pegawai*')) ? 'active' : '' }}">
+                        <li class="treeview  {{ (request()->is('skt_ormas_masuk*','skt_ormas_di_proses*','skt_ormas_di_verifikasi*','skt_ormas_selesai*','skt_ormas_masuk*','skt_ormas_di_verifikasi*')) ? 'active' : '' }}">
                             <a href="#"> <i class="fa fa-database"></i> <span>SKT Ormas</span>
-                                <span class="pull-right-container">
+                                <span class="pull-right-container" id="notif7">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
                             @if(Auth::user()->group==1 || Auth::user()->group==2)
-                                <li class="{{ (request()->is('skt_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skt_ormas_masuk*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk
+                                <span class="pull-right-container" id="notif8">
+                                </span></a></li>
                                 <li class="{{ (request()->is('skt_ormas_di_proses*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_di_proses')}}"><i class="fa fa-circle-o"></i> Data Di Proses</a></li>
-                                <li class="{{ (request()->is('skt_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
+                                <li class="{{ (request()->is('skt_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi
+                                <span class="pull-right-container" id="notif9">
+                                </span></a></li>
                                 <li class="{{ (request()->is('skt_ormas_selesai*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_selesai')}}"><i class="fa fa-circle-o"></i> Selesai</a></li>
                             @else
-                                <li class="{{ (request()->is('skt_ormas_masuk')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk</a></li>
+                                <li class="{{ (request()->is('skt_ormas_masuk*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_masuk')}}"><i class="fa fa-circle-o"></i> Data Masuk
+                                <span class="pull-right-container" id="notif8">
+                                </span></a></li>
                                 <li class="{{ (request()->is('skt_ormas_di_verifikasi*')) ? 'active' : '' }}"><a href="{{ url('skt_ormas_di_verifikasi')}}"><i class="fa fa-circle-o"></i> Telah Di Verifikasi</a></li>
                             @endif
                             </ul>
@@ -238,6 +256,161 @@
         <script src="{{ asset('/assets/core-admin/core-dist/js/adminlte.min.js') }}"></script>
         <script src="{{ asset('/assets/core-admin/core-dist/js/demo.js') }}"></script>
         
+        <script type="text/javascript">
+            function cek(){
+                
+                $.ajax({
+                    url:"{{ url('/izin_penelitian/total_data_masuk') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek();
+                
+            });
+
+            function cek2(){
+                
+                $.ajax({
+                    url:"{{ url('/izin_penelitian/jumlah_data_masuk') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif2").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek2();
+                
+            });
+
+            function cek3(){
+                
+                $.ajax({
+                    url:"{{ url('/izin_penelitian/jumlah_data_diverifikasi') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif3").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek3();
+                
+            });
+
+            function cek4(){
+                
+                $.ajax({
+                    url:"{{ url('/skk_ormas/total_data_masuk') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif4").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek4();
+                
+            });
+
+            function cek5(){
+                
+                $.ajax({
+                    url:"{{ url('/skk_ormas/jumlah_data_masuk') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif5").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek5();
+                
+            });
+
+            function cek6(){
+                
+                $.ajax({
+                    url:"{{ url('/skk_ormas/jumlah_data_diverifikasi') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif6").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek6();
+                
+            });
+
+            function cek7(){
+                
+                $.ajax({
+                    url:"{{ url('/skt_ormas/total_data_masuk') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif7").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek7();
+                
+            });
+
+            function cek8(){
+                
+                $.ajax({
+                    url:"{{ url('/skt_ormas/jumlah_data_masuk') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif8").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek8();
+                
+            });
+
+            function cek9(){
+                
+                $.ajax({
+                    url:"{{ url('/skt_ormas/jumlah_data_diverifikasi') }}",
+                    cache: false,
+                    success: function(msg){
+                        $("#notif9").html(msg);
+                    }
+                });
+                // var waktu = setTimeout("cek4()",3000);
+            }
+
+            $(document).ready(function(){
+                cek9();
+                
+            });
+
+        </script>
         <script>
             $(document).ready(function () {
               $('.sidebar-menu').tree();
@@ -284,5 +457,6 @@
 
             })
         </script>
+        
     </body>
 </html>

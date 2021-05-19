@@ -13,7 +13,7 @@
 	<section class="content">
 	<div class="box">
 		<div class="box-header with-border">
-			<h3 class="box-title">Edit Satuan</h3>
+			<h3 class="box-title">{{ __($title) }}</h3>
 		</div>
 		
 		<form action="{{ url('/izin_penelitian_di_verifikasi/edit/'.$izin_penelitian->id) }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
@@ -31,6 +31,54 @@
 						</div>
 					</div>
 					@endif
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Nama Pemohon')}}</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" value="{{ $izin_penelitian->nama }}" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Alamat Pemohon')}}</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" value="{{ $izin_penelitian->tempat }}" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Judul Penelitian')}}</label>
+						<div class="col-sm-8">
+                				<textarea name="judul" class="form-control" disabled>{{ $izin_penelitian->judul }}</textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Lokasi Penelitian')}}</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" value="{{ $izin_penelitian->lokasi }}" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Waktu Kegiatan')}}</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" value="{{ $izin_penelitian->waktu_kegiatan }}" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Bidang Penelitian')}}</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" value="{{ $izin_penelitian->bidang }}" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Status Penelitian')}}</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" value="{{ $izin_penelitian->status_kegiatan }}" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label">{{ __('Menimbang')}}</label>
+						<div class="col-sm-8">
+							<textarea name="menimbang" class="form-control" disabled>{{ $izin_penelitian->menimbang }}</textarea>
+						</div>
+					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label">{{ __('Surat Dari Perguruan Tinggi/Instansi Asal Peneliti')}}</label>
 						<div class="col-sm-8">
@@ -89,7 +137,7 @@
 							<a href="{{ url('/upload/surat_pernyataan/'.$izin_penelitian->surat_pernyataan) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
 							
 							<div style="padding-top:10px">
-								@if(Request::segment(1)=="izin_penelitian_masuk")
+								@if(Request::segment(1)=="izin_penelitian_masuk" && (Auth::user()->group==2 || Auth::user()->group==6))
 									@if(Auth::user()->group==2)
 										<a href="{{ url('/izin_penelitian_masuk/proses/'.$izin_penelitian->id)}}" class="btn btn-success btn-flat btn-sm" title="Proses Dokumen dan Kirim Ke Kepala Badan" onclick="return confirm('Anda Yakin ?');"> Proses Dokumen dan Kirim Ke Kepala Badan</a>
 									@else

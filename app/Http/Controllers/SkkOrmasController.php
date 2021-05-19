@@ -124,7 +124,6 @@ class SkkOrmasController extends Controller
             } else {
                 $skk_ormas = SkkOrmas::select('skk_ormas_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'skk_ormas_tbl.user_id')
-                                ->where('skk_ormas_tbl.status',3)
                                 ->where(function ($query) {
                                     $query->where('skk_ormas_tbl.status',3)
                                         ->orWhere('skk_ormas_tbl.status',4);
@@ -226,5 +225,51 @@ class SkkOrmasController extends Controller
 		$skk_ormas->delete();
 		
         return redirect('/skk_ormas')->with('status', 'Data Berhasil Dihapus');
+    }
+
+    ## Total Data Masuk
+    public function total_data_masuk()
+    {
+        if(Auth::user()->group==2){
+            $skk_ormas = SkkOrmas::
+                        where(function ($query) {
+                            $query->where('status',1)
+                                ->orWhere('status',3);
+                        })->count();
+        }else{
+            $skk_ormas = SkkOrmas::where('status', 2)->count();
+        }
+        
+		if($skk_ormas>0){
+			echo "<small class='label pull-right bg-red'>".$skk_ormas."</small>";
+		} else {
+            echo "<i class='fa fa-angle-left pull-right'></i>";
+        }
+    }
+
+    
+    ## Jumlah Data Masuk
+    public function jumlah_data_masuk()
+    {
+        if(Auth::user()->group==2){
+            $skk_ormas = SkkOrmas::where('status',1)->count();
+            
+        }else{
+            $skk_ormas = SkkOrmas::where('status', 2)->count();
+        }
+        
+		if($skk_ormas>0){
+			echo "<small class='label pull-right bg-blue'>".$skk_ormas."</small>";
+		} 
+    }
+
+    ## Jumlah Data Di Verifikasi
+    public function jumlah_data_diverifikasi()
+    {
+        $skk_ormas = SkkOrmas::where('status', 3)->count();
+        
+		if($skk_ormas>0){
+			echo "<small class='label pull-right bg-blue'>".$skk_ormas."</small>";
+		} 
     }
 }

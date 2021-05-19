@@ -58,7 +58,7 @@
 						<td>{{ $v->kode }}</td>
 						<td>{{ $v->nik }}</td>
 						<td>{{ $v->name }}</td>
-						<td>{{ $v->tanggal }}</td>
+						<td>{{ date('d-m-Y', strtotime($v->tanggal)) }}</td>
 						<td>
 							@if($v->perbaikan=="")
 								<span class="label label-success">Data Baru</span>

@@ -104,6 +104,10 @@ Route::get('/izin_penelitian_selesai/detail/{izin_penelitian}', [IzinPenelitianC
 Route::get('/izin_penelitian_masuk/proses/{izin_penelitian}', [IzinPenelitianController::class, 'proses']);
 Route::put('/izin_penelitian_di_verifikasi/edit/{izin_penelitian}', [IzinPenelitianController::class, 'update']);
 
+Route::get('/izin_penelitian/total_data_masuk',[IzinPenelitianController::class, 'total_data_masuk']);
+Route::get('/izin_penelitian/jumlah_data_masuk',[IzinPenelitianController::class, 'jumlah_data_masuk']);
+Route::get('/izin_penelitian/jumlah_data_diverifikasi',[IzinPenelitianController::class, 'jumlah_data_diverifikasi']);
+
 ## SKK Ormas
 Route::get('/skk_ormas_masuk', [SkkOrmasController::class, 'index']);
 Route::get('/skk_ormas_di_proses', [SkkOrmasController::class, 'index']);
@@ -126,6 +130,10 @@ Route::get('/skk_ormas_selesai/detail/{skk_ormas}', [SkkOrmasController::class, 
 Route::get('/skk_ormas_masuk/proses/{skk_ormas}', [SkkOrmasController::class, 'proses']);
 Route::put('/skk_ormas_di_verifikasi/edit/{skk_ormas}', [SkkOrmasController::class, 'update']);
 
+Route::get('/skk_ormas/total_data_masuk',[SkkOrmasController::class, 'total_data_masuk']);
+Route::get('/skk_ormas/jumlah_data_masuk',[SkkOrmasController::class, 'jumlah_data_masuk']);
+Route::get('/skk_ormas/jumlah_data_diverifikasi',[SkkOrmasController::class, 'jumlah_data_diverifikasi']);
+
 ## SKT Ormas
 Route::get('/skt_ormas_masuk', [SktOrmasController::class, 'index']);
 Route::get('/skt_ormas_di_proses', [SktOrmasController::class, 'index']);
@@ -147,6 +155,10 @@ Route::get('/skt_ormas_selesai/detail/{skt_ormas}', [SktOrmasController::class, 
 
 Route::get('/skt_ormas_masuk/proses/{skt_ormas}', [SktOrmasController::class, 'proses']);
 Route::put('/skt_ormas_di_verifikasi/edit/{skt_ormas}', [SktOrmasController::class, 'update']);
+
+Route::get('/skt_ormas/total_data_masuk',[SktOrmasController::class, 'total_data_masuk']);
+Route::get('/skt_ormas/jumlah_data_masuk',[SktOrmasController::class, 'jumlah_data_masuk']);
+Route::get('/skt_ormas/jumlah_data_diverifikasi',[SktOrmasController::class, 'jumlah_data_diverifikasi']);
 
 ## User
 Route::get('/user', [UserController::class, 'index']);

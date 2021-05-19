@@ -44,7 +44,7 @@
             <form action="{{ url('/pengajuan_izin_penelitian_w/edit/'.$izin_penelitian->id)}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
 		        <input type="hidden" name="_method" value="PUT">
- <input type="hidden" name="file" class="form-control" value="6">
+            <input type="hidden" name="file" class="form-control" value="6">
               <div class="row">
                 <div class="col-md-5 form-group">
                   <p style="margin-top:5px">Nama Pemohon</p>

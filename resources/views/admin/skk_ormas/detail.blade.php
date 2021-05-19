@@ -195,7 +195,7 @@
 							<a href="{{ url('/upload/skt/'.$skk_ormas->skt) }}" target="_blank" class="btn btn-info btn-flat btn-sm" title="Kembali">Lihat Dokumen</a>
 							
 							<div style="padding-top:20px">
-								@if(Request::segment(1)=="skk_ormas_masuk")
+								@if(Request::segment(1)=="skk_ormas_masuk" && (Auth::user()->group==2 || Auth::user()->group==6))
 									@if(Auth::user()->group==2)
 										<a href="{{ url('/skk_ormas_masuk/proses/'.$skk_ormas->id)}}" class="btn btn-success btn-flat btn-sm" title="Proses Dokumen dan Kirim Ke Kepala Badan" onclick="return confirm('Anda Yakin ?');"> Proses Dokumen dan Kirim Ke Kepala Badan</a>
 									@else

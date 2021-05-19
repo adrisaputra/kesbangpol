@@ -75,7 +75,7 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $v->kode }}</td>
-                      <td>{{ $v->tanggal }}</td>
+						          <td>{{ date('d-m-Y', strtotime($v->tanggal)) }}</td>
                       <td>
                         @if($v->status==0)
                           <span class="label label-danger" style="background-color: #ff5722 !important;">Silahkan Upload Dokumen Persyaratan</span>

@@ -123,7 +123,6 @@ class SktOrmasController extends Controller
             } else {
                 $skt_ormas = SktOrmas::select('skt_ormas_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'skt_ormas_tbl.user_id')
-                                ->where('skt_ormas_tbl.status',3)
                                 ->where(function ($query) {
                                     $query->where('skt_ormas_tbl.status',3)
                                         ->orWhere('skt_ormas_tbl.status',4);
@@ -226,4 +225,51 @@ class SktOrmasController extends Controller
 		
         return redirect('/skt_ormas')->with('status', 'Data Berhasil Dihapus');
     }
+    
+    ## Total Data Masuk
+    public function total_data_masuk()
+    {
+        if(Auth::user()->group==2){
+            $skt_ormas = SktOrmas::
+                        where(function ($query) {
+                            $query->where('status',1)
+                                ->orWhere('status',3);
+                        })->count();
+        }else{
+            $skt_ormas = SktOrmas::where('status', 2)->count();
+        }
+        
+		if($skt_ormas>0){
+			echo "<small class='label pull-right bg-red'>".$skt_ormas."</small>";
+		} else {
+            echo "<i class='fa fa-angle-left pull-right'></i>";
+        }
+    }
+
+    
+    ## Jumlah Data Masuk
+    public function jumlah_data_masuk()
+    {
+        if(Auth::user()->group==2){
+            $skt_ormas = SktOrmas::where('status',1)->count();
+            
+        }else{
+            $skt_ormas = SktOrmas::where('status', 2)->count();
+        }
+        
+		if($skt_ormas>0){
+			echo "<small class='label pull-right bg-blue'>".$skt_ormas."</small>";
+		} 
+    }
+
+    ## Jumlah Data Di Verifikasi
+    public function jumlah_data_diverifikasi()
+    {
+        $skt_ormas = SktOrmas::where('status', 3)->count();
+        
+		if($skt_ormas>0){
+			echo "<small class='label pull-right bg-blue'>".$skt_ormas."</small>";
+		} 
+    }
+
 }
