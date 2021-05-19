@@ -28,6 +28,24 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 /*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
 
+-- membuang struktur untuk table db_kesbangpol.foto_tbl
+CREATE TABLE IF NOT EXISTS `foto_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(200) DEFAULT NULL,
+  `gambar` varchar(200) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_kesbangpol.foto_tbl: ~2 rows (lebih kurang)
+/*!40000 ALTER TABLE `foto_tbl` DISABLE KEYS */;
+INSERT INTO `foto_tbl` (`id`, `judul`, `gambar`, `user_id`, `created_at`, `updated_at`) VALUES
+	(17, 'sasa', '1621419934.jpg', 1, '2021-05-19 10:25:34', '2021-05-19 10:25:34'),
+	(18, 'xxx', '1621420015.jpg', 1, '2021-05-19 10:26:55', '2021-05-19 10:26:55');
+/*!40000 ALTER TABLE `foto_tbl` ENABLE KEYS */;
+
 -- membuang struktur untuk table db_kesbangpol.izin_penelitian_tbl
 CREATE TABLE IF NOT EXISTS `izin_penelitian_tbl` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -54,13 +72,10 @@ CREATE TABLE IF NOT EXISTS `izin_penelitian_tbl` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
--- Membuang data untuk tabel db_kesbangpol.izin_penelitian_tbl: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel db_kesbangpol.izin_penelitian_tbl: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `izin_penelitian_tbl` DISABLE KEYS */;
-INSERT INTO `izin_penelitian_tbl` (`id`, `kode`, `surat_perguruan_tinggi`, `proposal_penelitian`, `ktp_peneliti`, `izin_penelitian`, `surat_pernyataan`, `dokumen_rekomendasi`, `nama`, `tempat`, `judul`, `lokasi`, `waktu_kegiatan`, `bidang`, `status_kegiatan`, `menimbang`, `perbaikan`, `tanggal`, `waktu`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-	(1, 'IP-20210518022743', '1621305057.pdf', '1621305169.pdf', '1621305177.pdf', '1621305186.pdf', '1621305126.pdf', '1621307654.pdf', 'IYA RAWIA', 'Dusun Nikoloi Desa Dete Kec. Tomia Timur Kab. Wakatobi', 'DATA RINGKASAN BELANJA MENURUT URUSAN PEMERINTAH DAERAH DAN ORGANISASI KOTA KENDARI TAHUN 2005-2018', 'BPKAD', 'Januari 2020  s/d  Februari  2020', 'Data Ringkasan Belanja', 'Baru ', 'xxx', 'ass', '2021-05-18', '02:27:43', 3, 2, '2021-05-18 02:27:43', '2021-05-18 12:01:32'),
-	(2, 'IP-20210518122504', '1621342360.pdf', '1621342367.pdf', '1621342379.pdf', '1621342386.pdf', '1621342393.pdf', NULL, 'ADRI SAPUTRA IBRAHIM', 'KENDARI', 'IT', 'KOMINFO', 'JANUARI S/D MARET 2021', 'IT', 'AKTIF', 'dddd', NULL, '2021-05-18', '12:25:04', 3, 2, '2021-05-18 12:25:04', '2021-05-18 12:53:55');
 /*!40000 ALTER TABLE `izin_penelitian_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_kesbangpol.migrations
@@ -94,6 +109,22 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
+-- membuang struktur untuk table db_kesbangpol.pengaduan_tbl
+CREATE TABLE IF NOT EXISTS `pengaduan_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subjek` varchar(400) DEFAULT NULL,
+  `pesan` text DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_kesbangpol.pengaduan_tbl: ~0 rows (lebih kurang)
+/*!40000 ALTER TABLE `pengaduan_tbl` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pengaduan_tbl` ENABLE KEYS */;
+
 -- membuang struktur untuk table db_kesbangpol.personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -114,6 +145,24 @@ CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
 /*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
 /*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
 
+-- membuang struktur untuk table db_kesbangpol.profil_tbl
+CREATE TABLE IF NOT EXISTS `profil_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_dinas` varchar(300) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `telp` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_kesbangpol.profil_tbl: ~1 rows (lebih kurang)
+/*!40000 ALTER TABLE `profil_tbl` DISABLE KEYS */;
+INSERT INTO `profil_tbl` (`id`, `nama_dinas`, `alamat`, `telp`, `email`, `created_at`, `updated_at`) VALUES
+	(1, 'KESBANGPOL KOTA KENDARI', 'w', '3343', 'kesbangpolkendari@gmail.com', NULL, '2021-05-19 10:54:00');
+/*!40000 ALTER TABLE `profil_tbl` ENABLE KEYS */;
+
 -- membuang struktur untuk table db_kesbangpol.sessions
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -127,12 +176,11 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel db_kesbangpol.sessions: ~3 rows (lebih kurang)
+-- Membuang data untuk tabel db_kesbangpol.sessions: ~2 rows (lebih kurang)
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('EyhsUSETGGreCHkBDIiJRee9EfM8RJ4VxC7Dbg5Y', 6, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36 Edg/90.0.818.62', 'YTo2OntzOjM6InVybCI7YTowOnt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Qva2VzYmFuZ3BvbC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjY6Il90b2tlbiI7czo0MDoiV0E3UnFPRmlSdEdRbEwwOUoyUVk1b0VBUHZRb3NNMEpBeDRMQ1h2bCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NjtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJG0xUzNsTmM5L3dTSDZyMUQzQ0cvb3VYM0NzVzdDVDgxOG14M2U2Nkd1amZzVXFFdGdGUG5TIjt9', 1621385101),
-	('HEQvsNYWVQ0qhFetRlIpLEmzF0jNgmAPGzF0DzZX', 2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMjI1bDQ3NkYxa1l1NktvSjNmb0YxZDB1bmc2ZmoxSFRoeDlWamI0ayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTI6Imh0dHA6Ly9sb2NhbGhvc3Qva2VzYmFuZ3BvbC9zdGF0dXNfaXppbl9wZW5lbGl0aWFuX3ciO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkRnBHSTJ2VXlGeWJCU1Q0cDh4dE9HT3RDTERwTXdSMllyeHhoVVdNMDl4T0xJT3dCalVhclMiO30=', 1621381612),
-	('s7Wjzam6sFE2AyEyCvq7qY9fRBcbFCkCtnOwWxoo', 3, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTo2OntzOjM6InVybCI7YTowOnt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjY6Imh0dHA6Ly9sb2NhbGhvc3Qva2VzYmFuZ3BvbC9pemluX3BlbmVsaXRpYW5fZGlfdmVyaWZpa2FzaS9kZXRhaWwvMiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NjoiX3Rva2VuIjtzOjQwOiIyZFZ0TldjanZIM3FOUzY4aFdMZHBGOWZrTTFjSkJJWmRRZ3luMVFKIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkSEJHMU5tUFRBU1o4YkN0b1JSR3Q3LjBDRWg2RmIvVk5KRmo4R0RMb2lqaFlTQ0x4VDJhZkMiO30=', 1621385113);
+	('WxRlwmz1UqYypEqaoskONWJNp9H5IzbxKeVYy1QC', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicVlCaW1oWnI5UU1rSXJ4NnFvaFh5U0NMTTB6ZE5YMmhnYXZXZEpDcyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Qva2VzYmFuZ3BvbCI7fX0=', 1621429210),
+	('wYWK5dd7VRN3WTRSqUo9qlgjYybVxQZUvrUXre3x', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'YTo1OntzOjM6InVybCI7YTowOnt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3Qva2VzYmFuZ3BvbC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NjoiX3Rva2VuIjtzOjQwOiJaUzBhN1UzeGo5UEdXeldhTmRkNjNpMDhrYlhmbnpGdkJQUDE4TFlhIjtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJG0xUzNsTmM5L3dTSDZyMUQzQ0cvb3VYM0NzVzdDVDgxOG14M2U2Nkd1amZzVXFFdGdGUG5TIjt9', 1621429107);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_kesbangpol.skk_ormas_tbl
@@ -170,12 +218,10 @@ CREATE TABLE IF NOT EXISTS `skk_ormas_tbl` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- Membuang data untuk tabel db_kesbangpol.skk_ormas_tbl: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `skk_ormas_tbl` DISABLE KEYS */;
-INSERT INTO `skk_ormas_tbl` (`id`, `kode`, `anggaran_dasar`, `logo`, `bendera`, `program_kerja`, `domisili`, `kepemilikan`, `foto_kantor`, `susunan_pengurus`, `biodata_ketua`, `foto_ketua`, `ktp_ketua`, `biodata_sekretaris`, `foto_sekretaris`, `ktp_sekretaris`, `biodata_bendahara`, `foto_bendahara`, `ktp_bendahara`, `formulir`, `rekomendasi`, `surat_pernyataan_permendagri`, `surat_pernyataan_kesediaan`, `skt`, `dokumen_rekomendasi`, `perbaikan`, `tanggal`, `waktu`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-	(1, 'SKKO-20210518023406', '1621308143.pdf', '1621308149.pdf', '1621308155.pdf', '1621308162.pdf', '1621308168.pdf', '1621308174.pdf', '1621308180.pdf', '1621308187.pdf', '1621308193.pdf', '1621308201.pdf', '1621308207.pdf', '1621308255.pdf', '1621308262.pdf', '1621308269.pdf', '1621308276.pdf', '1621308283.pdf', '1621308289.pdf', '1621308476.pdf', '1621320305.pdf', '1621308492.pdf', '1621320288.pdf', '1621308726.pdf', '1621323675.pdf', 'data belum sesuai', '2021-05-18', '02:34:06', 2, 2, '2021-05-18 02:34:06', '2021-05-19 00:36:17');
 /*!40000 ALTER TABLE `skk_ormas_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_kesbangpol.skt_ormas_tbl
@@ -212,13 +258,29 @@ CREATE TABLE IF NOT EXISTS `skt_ormas_tbl` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- Membuang data untuk tabel db_kesbangpol.skt_ormas_tbl: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `skt_ormas_tbl` DISABLE KEYS */;
-INSERT INTO `skt_ormas_tbl` (`id`, `kode`, `anggaran_dasar`, `logo`, `bendera`, `program_kerja`, `domisili`, `kepemilikan`, `foto_kantor`, `susunan_pengurus`, `biodata_ketua`, `foto_ketua`, `ktp_ketua`, `biodata_sekretaris`, `foto_sekretaris`, `ktp_sekretaris`, `biodata_bendahara`, `foto_bendahara`, `ktp_bendahara`, `formulir`, `rekomendasi`, `surat_pernyataan_permendagri`, `surat_pernyataan_kesediaan`, `dokumen_rekomendasi`, `perbaikan`, `tanggal`, `waktu`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-	(1, 'SKTO-20210518070837', '1621322502.pdf', '1621322511.pdf', NULL, '1621322517.pdf', '1621322524.pdf', '1621322530.pdf', '1621322537.pdf', '1621322544.pdf', '1621322551.pdf', '1621322558.pdf', '1621322565.pdf', '1621322573.pdf', '1621322581.pdf', '1621322588.pdf', '1621322598.pdf', '1621322608.pdf', '1621322617.pdf', '1621322625.pdf', NULL, '1621322632.pdf', '1621324387.pdf', '1621325014.pdf', 'sasa', '2021-05-18', '07:08:37', 2, 2, '2021-05-18 07:08:37', '2021-05-19 00:13:19');
 /*!40000 ALTER TABLE `skt_ormas_tbl` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_kesbangpol.slider_tbl
+CREATE TABLE IF NOT EXISTS `slider_tbl` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(300) DEFAULT NULL,
+  `isi` text DEFAULT NULL,
+  `gambar` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_kesbangpol.slider_tbl: ~2 rows (lebih kurang)
+/*!40000 ALTER TABLE `slider_tbl` DISABLE KEYS */;
+INSERT INTO `slider_tbl` (`id`, `judul`, `isi`, `gambar`, `created_at`, `updated_at`) VALUES
+	(14, 'SELAMAT DATANG DI KESBANGPOL', 'dsssssssssssssss', '1621416621.jpg', '2021-05-19 09:25:30', '2021-05-19 09:30:21'),
+	(15, 'SELAMAT DATANG DI KESBANGPOL', 'sasasa', '1621416927.jpg', '2021-05-19 09:35:27', '2021-05-19 09:35:27');
+/*!40000 ALTER TABLE `slider_tbl` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_kesbangpol.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -240,13 +302,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel db_kesbangpol.users: ~6 rows (lebih kurang)
+-- Membuang data untuk tabel db_kesbangpol.users: ~5 rows (lebih kurang)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `nik`, `alamat`, `no_hp`, `foto_ktp`, `group`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 'administrator', 'administrator@gmail.com', NULL, '$2y$10$.Pi9v0UKQ8NtsYWGT58iI.EohUgC8mR0B9uSn5VNxLOmYK6.y2oqO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2021-05-03 22:48:34', '2021-05-03 22:48:34'),
-	(2, 'adrisaputra', 'adri.saputra.ibrahim@gmail.com', NULL, '$2y$10$FpGI2vUyFybBST4p8xtOGOtCLDpMwR2YrxxhUWM09xOLIOwBjUarS', NULL, NULL, NULL, '7471091610910001', 'Jl. Pemuda', NULL, '1620145640.jpeg', 7, 1, '2021-05-04 16:27:20', '2021-05-04 16:27:20'),
+	(2, 'adrisaputra', 'adri.saputra.ibrahim@gmail.com', NULL, '$2y$10$80s2NpjvW4JAop5DmLZP1eFeKiwFO6wD1FC5YihNP1y/ALEcYR9Fm', NULL, NULL, NULL, '7471091610910001', 'Jl. Pemuda', '433333', '1621424620.jpg', 7, 1, '2021-05-04 16:27:20', '2021-05-19 12:46:31'),
 	(3, 'staff', 'staff@gmail.com', NULL, '$2y$10$HBG1NmPTASZ8bCtoRRGt7.0CEh6Fb/VNJFj8GDLoijhYSCLxT2afC', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, '2021-05-07 08:36:06', '2021-05-07 08:36:06'),
 	(4, 'kasubid', 'kasubid@gmail.com', NULL, '$2y$10$rGCt6t7N1Oy1EuUnXbS8c.nPin4IdelP7QbMV6McatpZVk2BCbNlu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, 1, '2021-05-07 08:37:13', '2021-05-07 08:37:13'),
 	(5, 'kabid', 'kabid@gmail.com', NULL, '$2y$10$B9eHYezWlYVE2g0pihHheuZeb6E60iwK4T.8nVug40/CTTjWCjntS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 1, '2021-05-07 08:37:55', '2021-05-07 08:37:55'),

@@ -59,44 +59,32 @@
 						<label class="col-sm-2 control-label">{{ __('Group') }}</label>
 						<div class="col-sm-10">
 							@if ($errors->has('group'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('group') }}</label>@endif
-							<select class="form-control" name="group" onchange=" if (this.selectedIndex=='7'){ 
- 												document.getElementById('seksi').style.display = 'inline'; 
- 											} else {
- 												document.getElementById('seksi').style.display = 'none'; 
- 											} ;">
+							<select class="form-control" name="group">
 								<option value="">- Pilih Group-</option>
-								<option value="1" @if($user->group =="1") selected @endif>Administrator</option>
-								<option value="5" @if($user->group=="5") selected @endif>Admin Kepegawaian</option>
-								<option value="6" @if($user->group=="6") selected @endif>Admin Umum</option>
-								<option value="7" @if($user->group=="7") selected @endif>Admin Keuangan</option>
-								<option value="2" @if($user->group=="2") selected @endif>Verifikator</option>
-								<option value="3" @if($user->group=="3") selected @endif>Pegawai</option>
-								<option value="4" @if($user->group=="4") selected @endif>Seksi</option>
+								<option value="1" @if($user->group=="1") selected @endif>Administrator</option>
+								<option value="2" @if($user->group=="2") selected @endif>Staff</option>
+								<option value="3" @if($user->group=="3") selected @endif>Kasubid</option>
+								<option value="4" @if($user->group=="4") selected @endif>Kabid</option>
+								<option value="5" @if($user->group=="5") selected @endif>Sekretaris</option>
+								<option value="6" @if($user->group=="6") selected @endif>Kepala Badan</option>
 							</select>
 
 						</div>
 					</div>
 
-					@if($user->group =="4")
-                              <span id='seksi' style='display:inline;'>
-                         @else
-                              <span id='seksi' style='display:none;'>
-                         @endif
-
-					<div class="form-group @if ($errors->has('seksi')) has-error @endif">
-						<label class="col-sm-2 control-label">{{ __('Seksi') }}</label>
+					<div class="form-group @if ($errors->has('status')) has-error @endif">
+						<label class="col-sm-2 control-label">{{ __('Status') }}</label>
 						<div class="col-sm-10">
-							@if ($errors->has('seksi'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('seksi') }}</label>@endif
-							<select class="form-control" name="seksi">
-								<option value="">- Pilih Seksi-</option>
-								@foreach($seksi as $v)
-									<option value="{{ $v->id }}" @if($user->seksi==$v->id) selected @endif>{{ $v->nama_seksi }}</option>
-								@endforeach
+							@if ($errors->has('status'))<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {{ $errors->first('status') }}</label>@endif
+							<select class="form-control" name="status">
+								<option value="">- Pilih Status-</option>
+								<option value="0" @if($user->status=="0") selected @endif>Tidak Aktif</option>
+								<option value="1" @if($user->status=="1") selected @endif>Aktif</option>
 							</select>
+
 						</div>
 					</div>
-					</span>
-					
+
 					<div class="form-group @if ($errors->has('group')) has-error @endif">
 						<label class="col-sm-2 control-label"></label>
 						<div class="col-sm-10">

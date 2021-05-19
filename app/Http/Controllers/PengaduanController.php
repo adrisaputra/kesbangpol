@@ -12,7 +12,8 @@ class PengaduanController extends Controller
     ## Tampikan Data
     public function index()
     {
-    	$pengaduan = DB::table('pengaduan_tbl')->orderBy('id','DESC')->paginate(10);
+    	$pengaduan = Pengaduan::select('pengaduan_tbl.*','users.name','users.email')
+                    ->leftjoin('users', 'users.id', '=', 'pengaduan_tbl.user_id')->orderBy('id','DESC')->paginate(10);
 		return view('admin.pengaduan.index',compact('pengaduan'));
  
     }
@@ -25,29 +26,23 @@ class PengaduanController extends Controller
 		return view('admin.pengaduan.index',compact('pengaduan'));
     }
 	
-    ## Simpan Data
-	public function store(Request $request)
+    ## Tampilkan Form Edit
+    public function edit(Pengaduan $pengaduan)
     {
-		
-    	$this->validate($request, [
-            'nama' => 'required',
-            'email' => 'required',
-            'subjek' => 'required',
-            'pesan' => 'required',
-            'captcha' => 'required|captcha'
-        ]);
+        $title = 'Lihat Pengaduan';
+        $pengaduanx = DB::table('pengaduan_tbl')->select('pengaduan_tbl.*','users.name','users.email')
+                    ->leftjoin('users', 'users.id', '=', 'pengaduan_tbl.user_id')
+                    ->where('pengaduan_tbl.id',$pengaduan->id)
+                    ->orderBy('pengaduan_tbl.id','DESC')->get()->toArray();
 
-		$input['nama'] = $request->nama;
-		$input['email'] = $request->email;
-		$input['subjek'] = $request->subjek;
-		$input['pesan'] = $request->pesan;
-		
-        Pengaduan::create($input);
-		
-		return redirect('/')->with('status','Pesan Terkirim');
+        $pengaduan->status = 1;
+        $pengaduan->save();
 
+        $view=view('admin.pengaduan.edit', compact('pengaduanx','title'));
+        $view=$view->render();
+        return $view;
     }
-	
+      
 	## Hapus Data
 	public function delete($pengaduan)
     {

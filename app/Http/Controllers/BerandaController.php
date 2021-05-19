@@ -6,6 +6,8 @@ use App\Models\IzinPenelitian;   //nama model
 use App\Models\SkkOrmas;   //nama model
 use App\Models\SktOrmas;   //nama model
 use App\Models\Pengaduan;   //nama model
+use App\Models\Foto;   //nama model
+use App\Models\Slider;   //nama model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,33 +16,39 @@ class BerandaController extends Controller
 {
     public function index()
     {
-        return view('web.beranda');
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $foto = Foto::inRandomOrder()->limit(5)->get();
+        $slider = Slider::get();
+        return view('web.beranda', compact('foto','slider','profil'));
     }
 
     ### Izin Penelitian
     public function pengajuan_izin_penelitian()
     {
         $title = "Pengajuan Izin Penelitian";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = IzinPenelitian::where('status', 0)->where('user_id', Auth::user()->id)
                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
-        return view('web.izin_penelitian.index', compact('title','data'));
+        return view('web.izin_penelitian.index', compact('title','data','profil'));
     }
 
     public function search_pengajuan_izin_penelitian(Request $request)
     {
         $title = "Pengajuan Izin Penelitian";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = $request->get('search');
         
         $data = IzinPenelitian::where('status', 0)->where('user_id', Auth::user()->id)
                 ->where('kode', 'LIKE', '%'.$data.'%')
                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
     
-        return view('web.izin_penelitian.index', compact('title','data'));
+        return view('web.izin_penelitian.index', compact('title','data','profil'));
     }
       
     public function status_izin_penelitian()
     {
         $title = "Status Izin Penelitian";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = IzinPenelitian::
                 where(function ($query) {
                     $query->where('izin_penelitian_tbl.status',1)
@@ -50,12 +58,13 @@ class BerandaController extends Controller
                         ->orWhere('izin_penelitian_tbl.status',5);
                 })->where('user_id', Auth::user()->id)
                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
-        return view('web.izin_penelitian.index', compact('title','data'));
+        return view('web.izin_penelitian.index', compact('title','data','profil'));
     }
 
     public function search_status_izin_penelitian(Request $request)
     {
         $title = "Status Izin Penelitian";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = $request->get('search');
 
         $data = IzinPenelitian::
@@ -70,7 +79,7 @@ class BerandaController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->orderBy('izin_penelitian_tbl.id','DESC')->paginate(25);
 
-        return view('web.izin_penelitian.index', compact('title','data'));
+        return view('web.izin_penelitian.index', compact('title','data','profil'));
     }
       
     public function buat_pengajuan_izin_penelitian()
@@ -91,7 +100,8 @@ class BerandaController extends Controller
     public function edit_izin_penelitian(IzinPenelitian $izin_penelitian)
     {
         $title = "Upload Data Pengajuan Izin Penelitian";
-        $view=view('web.izin_penelitian.edit', compact('title','izin_penelitian'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.izin_penelitian.edit', compact('title','izin_penelitian','profil'));
         $view=$view->render();
         return $view;
     }
@@ -99,7 +109,8 @@ class BerandaController extends Controller
     public function perbaikan_izin_penelitian(IzinPenelitian $izin_penelitian)
     {
         $title = "Perbaiki Data";
-        $view=view('web.izin_penelitian.perbaikan', compact('title','izin_penelitian'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.izin_penelitian.perbaikan', compact('title','izin_penelitian','profil'));
         $view=$view->render();
         return $view;
     }
@@ -225,7 +236,8 @@ class BerandaController extends Controller
     public function detail_izin_penelitian(IzinPenelitian $izin_penelitian)
     {
         $title = "Status Izin Penelitian";
-        $view=view('web.izin_penelitian.detail', compact('title','izin_penelitian'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.izin_penelitian.detail', compact('title','izin_penelitian','profil'));
         $view=$view->render();
         return $view;
     }
@@ -235,26 +247,29 @@ class BerandaController extends Controller
     public function pengajuan_skk_ormas()
     {
         $title = "Pengajuan Surat Keterangan Keberadaan Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = SkkOrmas::where('status', 0)->where('user_id', Auth::user()->id)
                 ->orderBy('skk_ormas_tbl.id','DESC')->paginate(25);
-        return view('web.skk_ormas.index', compact('title','data'));
+        return view('web.skk_ormas.index', compact('title','data','profil'));
     }
 
     public function search_pengajuan_skk_ormas(Request $request)
     {
         $title = "Pengajuan Surat Keterangan Keberadaan Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = $request->get('search');
         
         $data = SkkOrmas::where('status', 0)->where('user_id', Auth::user()->id)
                 ->where('kode', 'LIKE', '%'.$data.'%')
                 ->orderBy('skk_ormas_tbl.id','DESC')->paginate(25);
     
-        return view('web.skk_ormas.index', compact('title','data'));
+        return view('web.skk_ormas.index', compact('title','data','profil'));
     }
     
     public function status_skk_ormas()
     {
         $title = "Status Surat Keterangan Keberadaan Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = SkkOrmas::
                 where(function ($query) {
                     $query->where('status',1)
@@ -264,12 +279,13 @@ class BerandaController extends Controller
                         ->orWhere('status',5);
                 })->where('user_id', Auth::user()->id)
                 ->orderBy('id','DESC')->paginate(25);
-        return view('web.skk_ormas.index', compact('title','data'));
+        return view('web.skk_ormas.index', compact('title','data','profil'));
     }
 
     public function search_status_skk_ormas(Request $request)
     {
         $title = "Status Surat Keterangan Keberadaan Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = $request->get('search');
 
         $data = SkkOrmas::
@@ -284,12 +300,13 @@ class BerandaController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->orderBy('id','DESC')->paginate(25);
 
-        return view('web.skk_ormas.index', compact('title','data'));
+        return view('web.skk_ormas.index', compact('title','data','profil'));
     }
 
     public function buat_pengajuan_skk_ormas()
     {
         $title = "Buat Pengajuan Surat Keterangan Keberadaan Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
 
         $input['kode'] = 'SKKO-'.date('Ymd').date('His');
 		$input['tanggal'] = date('Y-m-d');
@@ -305,7 +322,8 @@ class BerandaController extends Controller
     public function perbaikan_skk_ormas(SkkOrmas $skk_ormas)
     {
         $title = "Perbaiki Data";
-        $view=view('web.skk_ormas.perbaikan', compact('title','skk_ormas'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.skk_ormas.perbaikan', compact('title','skk_ormas','profil'));
         $view=$view->render();
         return $view;
     }
@@ -313,7 +331,8 @@ class BerandaController extends Controller
     public function edit_skk_ormas(SkkOrmas $skk_ormas)
     {
         $title = "Upload Data Pengajuan Surat Keterangan Keberadaan Ormas";
-        $view=view('web.skk_ormas.edit', compact('title','skk_ormas'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.skk_ormas.edit', compact('title','skk_ormas','profil'));
         $view=$view->render();
         return $view;
     }
@@ -715,7 +734,8 @@ class BerandaController extends Controller
     public function detail_skk_ormas(SkkOrmas $skk_ormas)
     {
         $title = "Status Surat Keterangan Keberadaan Ormas";
-        $view=view('web.skk_ormas.detail', compact('title','skk_ormas'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.skk_ormas.detail', compact('title','skk_ormas','profil'));
         $view=$view->render();
         return $view;
     }
@@ -726,6 +746,7 @@ class BerandaController extends Controller
     public function pengajuan_skt_ormas()
     {
         $title = "Pengajuan Surat Keterangan Terdaftar Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = SktOrmas::where('status', 0)->where('user_id', Auth::user()->id)
                 ->orderBy('skt_ormas_tbl.id','DESC')->paginate(25);
         return view('web.skt_ormas.index', compact('title','data'));
@@ -734,18 +755,20 @@ class BerandaController extends Controller
     public function search_pengajuan_skt_ormas(Request $request)
     {
         $title = "Pengajuan Surat Keterangan Terdaftar Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = $request->get('search');
         
         $data = SktOrmas::where('status', 0)->where('user_id', Auth::user()->id)
                 ->where('kode', 'LIKE', '%'.$data.'%')
                 ->orderBy('skt_ormas_tbl.id','DESC')->paginate(25);
     
-        return view('web.skt_ormas.index', compact('title','data'));
+        return view('web.skt_ormas.index', compact('title','data','profil'));
     }
 
     public function buat_pengajuan_skt_ormas()
     {
         $title = "Buat Pengajuan Surat Keterangan Terdaftar Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
 
         $input['kode'] = 'SKTO-'.date('Ymd').date('His');
 		$input['tanggal'] = date('Y-m-d');
@@ -761,7 +784,8 @@ class BerandaController extends Controller
     public function perbaikan_skt_ormas(SktOrmas $skt_ormas)
     {
         $title = "Perbaiki Data";
-        $view=view('web.skt_ormas.perbaikan', compact('title','skt_ormas'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.skt_ormas.perbaikan', compact('title','skt_ormas','profil'));
         $view=$view->render();
         return $view;
     }
@@ -769,6 +793,7 @@ class BerandaController extends Controller
     public function status_skt_ormas()
     {
         $title = "Status Surat Keterangan Terdaftar Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = SktOrmas::
                 where(function ($query) {
                     $query->where('status',1)
@@ -778,12 +803,13 @@ class BerandaController extends Controller
                         ->orWhere('status',5);
                 })->where('user_id', Auth::user()->id)
                 ->orderBy('id','DESC')->paginate(25);
-        return view('web.skt_ormas.index', compact('title','data'));
+        return view('web.skt_ormas.index', compact('title','data','profil'));
     }
 
     public function search_status_skt_ormas(Request $request)
     {
         $title = "Status Surat Keterangan Terdaftar Ormas";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = $request->get('search');
 
         $data = SktOrmas::
@@ -798,13 +824,14 @@ class BerandaController extends Controller
                 ->where('user_id', Auth::user()->id)
                 ->orderBy('id','DESC')->paginate(25);
 
-        return view('web.skt_ormas.index', compact('title','data'));
+        return view('web.skt_ormas.index', compact('title','data','profil'));
     }
       
     public function edit_skt_ormas(SktOrmas $skt_ormas)
     {
         $title = "Upload Data Pengajuan Surat Keterangan Terdaftar Ormas";
-        $view=view('web.skt_ormas.edit', compact('title','skt_ormas'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.skt_ormas.edit', compact('title','skt_ormas','profil'));
         $view=$view->render();
         return $view;
     }
@@ -1193,7 +1220,8 @@ class BerandaController extends Controller
     public function detail_skt_ormas(SktOrmas $skt_ormas)
     {
         $title = "Status Surat Keterangan Terdaftar Ormas";
-        $view=view('web.skt_ormas.detail', compact('title','skt_ormas'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.skt_ormas.detail', compact('title','skt_ormas','profil'));
         $view=$view->render();
         return $view;
     }
@@ -1202,16 +1230,18 @@ class BerandaController extends Controller
     public function pengaduan()
     {
         $title = "Pengaduan";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
         $data = Pengaduan::where('user_id', Auth::user()->id)
                 ->orderBy('id','DESC')->paginate(25);
-        return view('web.pengaduan.index', compact('title','data'));
+        return view('web.pengaduan.index', compact('title','data','profil'));
     }
  
     ## Tampilkan Form Create
     public function buat_pengaduan()
     {
         $title = "Buat Aduan";
-        $view=view('web.pengaduan.create', compact('title'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $view=view('web.pengaduan.create', compact('title','profil'));
         $view=$view->render();
         return $view;
     }
@@ -1234,16 +1264,34 @@ class BerandaController extends Controller
         return redirect('/pengaduan_w')->with('status','Pengaduan Dikirim');
     }
 
+    public function galeri()
+    {
+        $title = "Galeri Foto";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $foto = Foto::paginate(9);
+        return view('web.galeri', compact('title','foto','profil'));
+    }
+
     public function login()
     {
         $title = "Login";
-        return view('web.login', compact('title'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        return view('web.login', compact('title','profil'));
     }
 
     public function registrasi()
     {
         $title = "Registrasi";
-        return view('web.registrasi', compact('title'));
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        return view('web.registrasi', compact('title','profil'));
+    }
+
+    public function akun()
+    {
+        $title = "Akun";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $user = DB::table('users')->where('id',Auth::user()->id)->get()->toArray();
+        return view('web.akun', compact('title','profil','user'));
     }
 
 }

@@ -59,11 +59,19 @@
                 <tr class='info'>
                     <th width="1px">#</th>
                     <th width="500px">Pesan Aduan</th>
+                    <th width="100px">Status</th>
                 </tr>
                 @foreach($data as $v)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $v->pesan }}</td>
+                      <td>
+                        @if($v->status==0)
+                          <span class="label label-danger" style="background-color: #dd4b39 !important;">Terkirim</span>
+                        @else
+                        <span class="label label-success" style="background-color: #00a65a !important;">Selesai</span>
+                        @endif
+                      </td>
                     </tr>
                 @endforeach
                 </table>

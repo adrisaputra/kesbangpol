@@ -42,4 +42,33 @@ class RegistrasiController extends Controller
 		return redirect('/login_w')->with('status','Menunggu Konfirmasi Admin !');
 
     }
+
+    ## Edit Data
+    public function update(Request $request, User $user)
+    {
+        $this->validate($request, [
+            'alamat' => 'required',
+            'no_hp' => 'required|numeric',
+            'foto_ktp' => 'mimes:jpg,jpeg,png|max:300',
+            'password' => 'required|string|min:8|confirmed'
+        ]);
+
+		$user->fill($request->all());
+        if($request->password){
+            $user->password = Hash::make($request->password);
+        }
+		
+		if($request->file('foto_ktp') == ""){}
+    	else
+    	{	
+            $filename = time().'.'.$request->foto_ktp->getClientOriginalExtension();
+            $request->foto_ktp->move(public_path('upload/foto_ktp'), $filename);
+            $user->foto_ktp = $filename;
+		}
+		
+    	$user->save();
+		
+		return redirect('/login_w')->with('status', 'Data Berhasil Diubah');
+    }
+
 }

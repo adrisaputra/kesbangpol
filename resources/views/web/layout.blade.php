@@ -69,12 +69,23 @@
               </li>
               <li class="dropdown"><a href="#"><span>Status Dokumen</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
+                @if(Auth::user())
                   <li><a href="{{ url('status_izin_penelitian_w') }}">Izin Penelitian</a></li>
                   <li><a href="{{ url('status_skk_ormas_w') }}">Surat Keterangan Keberadaan Ormas</a></li>
                   <li><a href="{{ url('status_skt_ormas_w') }}">Surat Keterangan Terdaftar Ormas</a></li>
+                @else
+                  <li><a href="{{ url('login_w') }}">Izin Penelitian</a></li>
+                  <li><a href="{{ url('login_w') }}">Surat Keterangan Keberadaan Ormas</a></li>
+                  <li><a href="{{ url('login_w') }}">Surat Keterangan Terdaftar Ormas</a></li>
+                @endif
                 </ul>
               </li>
-              <li><a href="{{ url('pengaduan_w') }}">Pengaduan</a></li>
+              @if(Auth::user())
+                <li><a href="{{ url('pengaduan_w') }}">Pengaduan</a></li>
+              @else
+              <li><a href="{{ url('login_w') }}">Pengaduan</a></li>
+              @endif
+              
             </ul>
           </li>
           <li><a href="{{ url('galeri_w') }}">Galeri</a></li>
@@ -82,7 +93,7 @@
             @if(Auth::user()->foto_ktp)
               <li class="dropdown"><img src="{{ asset('upload/foto_ktp/'.Auth::user()->foto_ktp)}}" width=40px height="40px" style="border-radius: 50%;margin-left:20px"></a>
                 <ul>
-                    <li><a href="{{ url('download_dokumen_w') }}">Akun</a></li>
+                    <li><a href="{{ url('akun_w') }}">Akun</a></li>
                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">Sign out</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -93,7 +104,7 @@
             @else
               <li class="dropdown"><img src="{{ asset('assets/profile-1-20210205190338.png')}}" width=40px height="40px" style="border-radius: 50%;margin-left:20px"></a>
                 <ul>
-                    <li><a href="{{ url('download_dokumen_w') }}">Akun</a></li>
+                    <li><a href="{{ url('akun_w') }}">Akun</a></li>
                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                       document.getElementById('logout-form').submit();">Sign out</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -121,45 +132,13 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Flattern</h3>
+          <div class="col-lg-12 col-md-12 footer-contact">
+            <h3>{{ $profil[0]->nama_dinas }}</h3>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              {{ $profil[0]->alamat }} <br>
+              <strong>Telepon:</strong>{{ $profil[0]->telp }}<br>
+              <strong>Email:</strong> {{ $profil[0]->email }}<br>
             </p>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
           </div>
 
         </div>
@@ -168,25 +147,25 @@
 
     <div class="container d-md-flex py-4">
 
-      <div class="me-md-auto text-center text-md-start">
+      <!-- <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
           &copy; Copyright <strong><span>Flattern</span></strong>. All Rights Reserved
         </div>
-        <div class="credits">
+        <div class="credits"> -->
           <!-- All the links in the footer should remain intact. -->
           <!-- You can delete the links only if you purchased the pro version. -->
           <!-- Licensing information: https://bootstrapmade.com/license/ -->
           <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/ -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
-      </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+      </div> -->
+      <!-- <div class="social-links text-center text-md-right pt-3 pt-md-0">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
         <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
         <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-      </div>
+      </div> -->
     </div>
   </footer><!-- End Footer -->
 

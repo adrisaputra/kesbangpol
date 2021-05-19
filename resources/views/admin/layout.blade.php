@@ -221,8 +221,11 @@
                             @endif
                             </ul>
                         </li>
+                        <li class="{{ (request()->is('pengaduan*')) ? 'active' : '' }}""><a href="{{ url('pengaduan')}}"><i class="fa fa-database"></i> <span>Pengaduan</span></a></li>
+                        <li class="{{ (request()->is('foto*')) ? 'active' : '' }}""><a href="{{ url('foto')}}"><i class="fa fa-database"></i> <span>Foto</span></a></li>
                         @if(Auth::user()->group==1)
                         <li class="header">PENGATURAN</li>
+                        <li class="{{ (request()->is('slider*')) ? 'active' : '' }}""><a href="{{ url('slider')}}"><i class="fa fa-user"></i> <span>Slider</span></a></li>
                         <li class="{{ (request()->is('user*')) ? 'active' : '' }}""><a href="{{ url('user')}}"><i class="fa fa-user"></i> <span>User</span></a></li>
                         @endif
 
