@@ -14,6 +14,7 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
+        "mews/captcha": "^3.2",
         "phpoffice/phpword": "^0.18.1"
     },
     "require-dev": {

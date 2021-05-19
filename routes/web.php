@@ -8,6 +8,7 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\IzinPenelitianController;
 use App\Http\Controllers\SkkOrmasController;
 use App\Http\Controllers\SktOrmasController;
+use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -71,6 +72,9 @@ Route::put('/pengajuan_skk_ormas_w/perbaikan/{skk_ormas}', [BerandaController::c
 Route::get('/pengajuan_skt_ormas_w/perbaikan/{skt_ormas}', [BerandaController::class, 'perbaikan_skt_ormas']);
 Route::put('/pengajuan_skt_ormas_w/perbaikan/{skt_ormas}', [BerandaController::class, 'update_skt_ormas']);
 
+Route::get('/pengaduan_w', [BerandaController::class, 'pengaduan']);
+Route::get('/pengaduan_w/create', [BerandaController::class, 'buat_pengaduan']);
+Route::post('/pengaduan_w', [BerandaController::class, 'simpan_pengaduan']);
 Route::get('/registrasi_w', [BerandaController::class, 'registrasi']);
 Route::post('/registrasi_w', [RegistrasiController::class, 'store']);
 
@@ -159,6 +163,15 @@ Route::put('/skt_ormas_di_verifikasi/edit/{skt_ormas}', [SktOrmasController::cla
 Route::get('/skt_ormas/total_data_masuk',[SktOrmasController::class, 'total_data_masuk']);
 Route::get('/skt_ormas/jumlah_data_masuk',[SktOrmasController::class, 'jumlah_data_masuk']);
 Route::get('/skt_ormas/jumlah_data_diverifikasi',[SktOrmasController::class, 'jumlah_data_diverifikasi']);
+
+## Pengaduan
+Route::get('/pengaduan', [PengaduanController::class, 'index']);
+Route::get('/pengaduan/search', [PengaduanController::class, 'search']);
+Route::get('/pengaduan/create', [PengaduanController::class, 'search']);
+Route::post('/pengaduan', [PengaduanController::class, 'store']);
+Route::get('/pengaduan/edit/{pengaduan}', [PengaduanController::class, 'edit']);
+Route::put('/pengaduan/edit/{pengaduan}', [PengaduanController::class, 'update']);
+Route::get('/pengaduan/hapus/{pengaduan}', [PengaduanController::class, 'delete']);
 
 ## User
 Route::get('/user', [UserController::class, 'index']);

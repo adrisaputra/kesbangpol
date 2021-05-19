@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IzinPenelitian;   //nama model
 use App\Models\SkkOrmas;   //nama model
 use App\Models\SktOrmas;   //nama model
+use App\Models\Pengaduan;   //nama model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -1195,6 +1196,42 @@ class BerandaController extends Controller
         $view=view('web.skt_ormas.detail', compact('title','skt_ormas'));
         $view=$view->render();
         return $view;
+    }
+
+    ### Pengaduan
+    public function pengaduan()
+    {
+        $title = "Pengaduan";
+        $data = Pengaduan::where('user_id', Auth::user()->id)
+                ->orderBy('id','DESC')->paginate(25);
+        return view('web.pengaduan.index', compact('title','data'));
+    }
+ 
+    ## Tampilkan Form Create
+    public function buat_pengaduan()
+    {
+        $title = "Buat Aduan";
+        $view=view('web.pengaduan.create', compact('title'));
+        $view=$view->render();
+        return $view;
+    }
+
+    ## Simpan Pengaduan
+    public function simpan_pengaduan(Request $request)
+    {
+        $this->validate($request, [
+            'subjek' => 'required',
+            'pesan' => 'required',
+            'captcha' => 'required|captcha'
+        ]);
+
+        $input['subjek'] = $request->subjek;
+        $input['pesan'] = $request->pesan;
+		$input['user_id'] = Auth::user()->id;
+        
+        Pengaduan::create($input);
+        
+        return redirect('/pengaduan_w')->with('status','Pengaduan Dikirim');
     }
 
     public function login()

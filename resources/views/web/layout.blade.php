@@ -74,11 +74,10 @@
                   <li><a href="{{ url('status_skt_ormas_w') }}">Surat Keterangan Terdaftar Ormas</a></li>
                 </ul>
               </li>
-              <li><a href="{{ url('status_dokumen_w') }}">Pengaduan</a></li>
+              <li><a href="{{ url('pengaduan_w') }}">Pengaduan</a></li>
             </ul>
           </li>
           <li><a href="{{ url('galeri_w') }}">Galeri</a></li>
-          <li><a href="{{ url('kontak_w') }}">Kontak</a></li>
           @if(Auth::user())
             @if(Auth::user()->foto_ktp)
               <li class="dropdown"><img src="{{ asset('upload/foto_ktp/'.Auth::user()->foto_ktp)}}" width=40px height="40px" style="border-radius: 50%;margin-left:20px"></a>
