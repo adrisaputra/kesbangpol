@@ -105,12 +105,16 @@ class UserController extends Controller
                   'status' => 'required'
               ]);
           }
-           
   
-          $user->fill($request->all());
+        //   $user->fill($request->all());
+          
+          $user->name = $request->name;
+          $user->email = $request->email;
           if($request->password){
-              $user->password = Hash::make($request->password);
+            $user->password = Hash::make($request->password);
           }
+          $user->group = $request->group;
+          $user->status = $request->status;
           $user->save();
           
           $group = Auth::user()->group;

@@ -65,6 +65,7 @@
 								<option value="4" @if(old('group')=="4") selected @endif>Kabid</option>
 								<option value="5" @if(old('group')=="5") selected @endif>Sekretaris</option>
 								<option value="6" @if(old('group')=="6") selected @endif>Kepala Badan</option>
+								<option value="7" @if(old('group')=="7") selected @endif>Pemohon</option>
 							</select>
 
 						</div>

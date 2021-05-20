@@ -38,7 +38,7 @@
 							<input type="email" class="form-control" placeholder="Email" name="email" value="{{ $user->email }}" >
 						</div>
 					</div>
-					
+<!-- 					
 					<div class="form-group @if ($errors->has('password')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Password') }}</label>
 						<div class="col-sm-10">
@@ -54,7 +54,7 @@
 							<input type="password" class="form-control" placeholder="Konfirmasi Password" name="password_confirmation" >
 						</div>
 					</div>
-					
+					 -->
 					<div class="form-group @if ($errors->has('group')) has-error @endif">
 						<label class="col-sm-2 control-label">{{ __('Group') }}</label>
 						<div class="col-sm-10">
@@ -67,6 +67,7 @@
 								<option value="4" @if($user->group=="4") selected @endif>Kabid</option>
 								<option value="5" @if($user->group=="5") selected @endif>Sekretaris</option>
 								<option value="6" @if($user->group=="6") selected @endif>Kepala Badan</option>
+								<option value="7" @if($user->group=="7") selected @endif>Pemohon</option>
 							</select>
 
 						</div>
