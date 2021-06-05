@@ -9,7 +9,8 @@ use App\Http\Controllers\IzinPenelitianController;
 use App\Http\Controllers\SkkOrmasController;
 use App\Http\Controllers\SktOrmasController;
 use App\Http\Controllers\PengaduanController;
-use App\Http\Controllers\FotoController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DokumenController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\UserController;
@@ -78,7 +79,10 @@ Route::put('/pengajuan_skt_ormas_w/perbaikan/{skt_ormas}', [BerandaController::c
 Route::get('/pengaduan_w', [BerandaController::class, 'pengaduan']);
 Route::get('/pengaduan_w/create', [BerandaController::class, 'buat_pengaduan']);
 Route::post('/pengaduan_w', [BerandaController::class, 'simpan_pengaduan']);
-Route::get('/galeri_w', [BerandaController::class, 'galeri']);
+Route::get('/dokumen_w', [BerandaController::class, 'dokumen']);
+Route::get('/dokumen_w/search', [BerandaController::class, 'search_dokumen']);
+Route::get('/berita_w', [BerandaController::class, 'berita']);
+Route::get('/berita_w/search', [BerandaController::class, 'search_berita']);
 Route::get('/registrasi_w', [BerandaController::class, 'registrasi']);
 Route::post('/registrasi_w', [RegistrasiController::class, 'store']);
 Route::get('/akun_w', [BerandaController::class, 'akun']);
@@ -182,14 +186,23 @@ Route::group(['middleware' => 'is.group'], function () {
     Route::put('/pengaduan/edit/{pengaduan}', [PengaduanController::class, 'update']);
     Route::get('/pengaduan/hapus/{pengaduan}', [PengaduanController::class, 'delete']);
 
-    ## Foto
-    Route::get('/foto', [FotoController::class, 'index']);
-    Route::get('/foto/search', [FotoController::class, 'search']);
-    Route::get('/foto/create', [FotoController::class, 'create']);
-    Route::post('/foto', [FotoController::class, 'store']);
-    Route::get('/foto/edit/{foto}', [FotoController::class, 'edit']);
-    Route::put('/foto/edit/{foto}', [FotoController::class, 'update']);
-    Route::get('/foto/hapus/{foto}',[FotoController::class, 'delete']);
+    ## Berita
+    Route::get('/berita', [BeritaController::class, 'index']);
+    Route::get('/berita/search', [BeritaController::class, 'search']);
+    Route::get('/berita/create', [BeritaController::class, 'create']);
+    Route::post('/berita', [BeritaController::class, 'store']);
+    Route::get('/berita/edit/{berita}', [BeritaController::class, 'edit']);
+    Route::put('/berita/edit/{berita}', [BeritaController::class, 'update']);
+    Route::get('/berita/hapus/{berita}',[BeritaController::class, 'delete']);
+
+    ## Dokumen
+    Route::get('/dokumen', [DokumenController::class, 'index']);
+    Route::get('/dokumen/search', [DokumenController::class, 'search']);
+    Route::get('/dokumen/create', [DokumenController::class, 'create']);
+    Route::post('/dokumen', [DokumenController::class, 'store']);
+    Route::get('/dokumen/edit/{dokumen}', [DokumenController::class, 'edit']);
+    Route::put('/dokumen/edit/{dokumen}', [DokumenController::class, 'update']);
+    Route::get('/dokumen/hapus/{dokumen}',[DokumenController::class, 'delete']);
 
     ## Slider
     Route::get('/slider', [SliderController::class, 'index']);

@@ -49,19 +49,6 @@
                 </div>
               </div>
               
-              <div class="row" style="margin-top:10px">
-                <div class="col-md-5 form-group">
-                  <p>Captcha :</p>
-                </div>
-                <div class="col-md-2 form-group">
-                  <?=captcha_img();?>
-                </div>
-                <div class="col-md-4 form-group">
-                    <input type="text" class="form-control" name="captcha" placeholder="Masukkan Captcha" >
-                    @if ($errors->has('captcha')) <div class="validate" style="display:block;color: red;margin: 0 0 15px 0;font-weight: 400;font-size: 13px;"> {{ $errors->first('captcha') }}</div>@endif  
-                </div>
-              </div>
-              
               <br>
               <div class="text-center"><button type="submit" class="btn btn-success" style="background: #d41e10;
     border: 0;

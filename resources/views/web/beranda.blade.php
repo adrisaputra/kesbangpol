@@ -42,26 +42,49 @@
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
-      <div class="container">
+    <div class="container">
 
-        <div class="section-title" data-aos="fade-up">
-          <h2><strong>Galeri Foto</strong></h2>
+      <div class="section-title" data-aos="fade-up">
+          <h2><strong>Berita</strong></h2>
+      </div>
+
+      @foreach($berita as $v)
+        <div class="row">
+              <div class="col-lg-5" data-aos="fade-up">
+                <img src="{{ asset('upload/berita/'.$v->foto) }}" width="450px" height="300px" alt="" style="height: 260px;">
+              </div>  
+              <div class="col-lg-7">
+              <h3 data-aos="fade-up">{{ $v->judul }}</h3>
+                <!--div class="blog-meta">
+                  <span class="comments-type">
+                    <i class="fa fa-comment-o"></i>
+                    <a href="#">13 comments</a>
+                  </span>
+                  <span class="date-type">
+                    <i class="fa fa-calendar"></i>2016-03-05 / 09:10:16
+                  </span>
+                </div-->
+                <div class="blog-text" data-aos="fade-up">
+                  <p data-aos="fade-up"> 
+                  <?php
+                $content = substr($v->isi, 0, 400);
+              ?>
+              {!! $content !!} ...
+                  </p>
+                </div>
+                <a href="{{ url('detail_berita_w/'.$v->id ) }}" 
+                    style="display: inline-block;
+                    background: #28a745;
+                    color: #fff;
+                    padding: 4px 10px;
+                    font-size: 12px;
+                    border-radius: 4px;" data-aos="fade-up">Read More</a>
+                </div>
+        </div><br><br>
+      @endforeach
+        <div class="text-center" data-aos="fade-up">
+          <a href="{{ url('berita_w')}}" class="btn btn-warning" style="padding: 9px 24px;">Lihat Semua Berita</a>
         </div>
-
-        <div class="row portfolio-container" data-aos="fade-up">
-
-          @foreach($foto as $v)
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="{{ asset('upload/foto/'.$v->gambar)}}" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>{{ $v->judul }}</h4>
-              <a href="{{ asset('upload/foto/'.$v->gambar)}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" ><i class="bx bx-plus"></i></a>
-            </div>
-          </div>
-          @endforeach
-
-        </div>
-
       </div>
     </section><!-- End Portfolio Section -->
 

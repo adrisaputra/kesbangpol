@@ -21,7 +21,7 @@ class IzinPenelitianController extends Controller
     {
         if(Request()->segment(1)=='izin_penelitian_masuk'){
 
-            if(Auth::user()->group==2){
+            if(Auth::user()->group==1 || Auth::user()->group==2){
                 $title = "Data Masuk";
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
@@ -110,7 +110,7 @@ class IzinPenelitianController extends Controller
             $title = "Data Di Verifikasi";
             $izin_penelitian =  $request->get('search');
 
-            if(Auth::user()->group==2){
+            if(Auth::user()->group==1 || Auth::user()->group==2){
                 $izin_penelitian = IzinPenelitian::select('izin_penelitian_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'izin_penelitian_tbl.user_id')
                                 ->where('izin_penelitian_tbl.status',3)
@@ -254,7 +254,7 @@ class IzinPenelitianController extends Controller
     ## Total Data Masuk
     public function total_data_masuk()
     {
-        if(Auth::user()->group==2){
+        if(Auth::user()->group==1 || Auth::user()->group==2){
             $izin_penelitian = IzinPenelitian::
                                 where(function ($query) {
                                     $query->where('status',1)
@@ -275,7 +275,7 @@ class IzinPenelitianController extends Controller
     ## Jumlah Data Masuk
     public function jumlah_data_masuk()
     {
-        if(Auth::user()->group==2){
+        if(Auth::user()->group==1 || Auth::user()->group==2){
             $izin_penelitian = IzinPenelitian::where('status',1)->count();
             
         }else{

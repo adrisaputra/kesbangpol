@@ -6,7 +6,8 @@ use App\Models\IzinPenelitian;   //nama model
 use App\Models\SkkOrmas;   //nama model
 use App\Models\SktOrmas;   //nama model
 use App\Models\Pengaduan;   //nama model
-use App\Models\Foto;   //nama model
+use App\Models\Berita;   //nama model
+use App\Models\Dokumen;   //nama model
 use App\Models\Slider;   //nama model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,9 +18,9 @@ class BerandaController extends Controller
     public function index()
     {
         $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
-        $foto = Foto::inRandomOrder()->limit(5)->get();
+        $berita = Berita::orderBy('id','DESC')->limit(5)->get();
         $slider = Slider::get();
-        return view('web.beranda', compact('foto','slider','profil'));
+        return view('web.beranda', compact('berita','slider','profil'));
     }
 
     ### Izin Penelitian
@@ -1251,8 +1252,7 @@ class BerandaController extends Controller
     {
         $this->validate($request, [
             'subjek' => 'required',
-            'pesan' => 'required',
-            'captcha' => 'required|captcha'
+            'pesan' => 'required'
         ]);
 
         $input['subjek'] = $request->subjek;
@@ -1264,14 +1264,44 @@ class BerandaController extends Controller
         return redirect('/pengaduan_w')->with('status','Pengaduan Dikirim');
     }
 
-    public function galeri()
+    public function berita()
     {
-        $title = "Galeri Foto";
+        $title = "Berita";
+        $berita = Berita::orderBy('id','DESC')->paginate(5);
         $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
-        $foto = Foto::paginate(9);
-        return view('web.galeri', compact('title','foto','profil'));
+        return view('web.berita', compact('title','profil','berita'));
     }
 
+    public function search_berita(Request $request)
+    {
+        $title = "Berita";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $berita = $request->get('search');
+        $berita = Berita::
+                where(function ($query) use ($berita) {
+                    $query->where('judul', 'LIKE', '%'.$berita.'%')
+                        ->orWhere('isi', 'LIKE', '%'.$berita.'%');
+                })->orderBy('id','DESC')->paginate(5);
+        return view('web.berita', compact('title','berita','profil'));
+    }
+      
+    public function dokumen()
+    {
+        $title = "Dokumen";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $dokumen = Dokumen::paginate(25);
+        return view('web.dokumen', compact('title','dokumen','profil'));
+    }
+
+    public function search_dokumen(Request $request)
+    {
+        $title = "Dokumen";
+        $profil = DB::table('profil_tbl')->where('id',1)->get()->toArray();
+        $dokumen = $request->get('search');
+        $dokumen = Dokumen::where('judul', 'LIKE', '%'.$dokumen.'%')->orderBy('id','DESC')->paginate(25);
+        return view('web.dokumen', compact('title','dokumen','profil'));
+    }
+      
     public function login()
     {
         $title = "Login";

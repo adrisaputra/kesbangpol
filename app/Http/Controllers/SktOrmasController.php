@@ -21,7 +21,7 @@ class SktOrmasController extends Controller
     {
         if(Request()->segment(1)=='skt_ormas_masuk'){
 
-            if(Auth::user()->group==2){
+            if(Auth::user()->group==1 || Auth::user()->group==2){
                 $title = "Data Masuk";
                 $skt_ormas = SktOrmas::select('skt_ormas_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'skt_ormas_tbl.user_id')
@@ -46,7 +46,7 @@ class SktOrmasController extends Controller
         }elseif(Request()->segment(1)=='skt_ormas_di_verifikasi'){
 
             $title = "Data Di Verifikasi";
-            if(Auth::user()->group==2){
+            if(Auth::user()->group==1 || Auth::user()->group==2){
                 $skt_ormas = SktOrmas::select('skt_ormas_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'skt_ormas_tbl.user_id')
                                 ->where('skt_ormas_tbl.status',3)
@@ -110,7 +110,7 @@ class SktOrmasController extends Controller
             $title = "Data Di Verifikasi";
             $skt_ormas =  $request->get('search');
 
-            if(Auth::user()->group==2){
+            if(Auth::user()->group==1 || Auth::user()->group==2){
                 $skt_ormas = SktOrmas::select('skt_ormas_tbl.*','users.name','users.nik')
                                 ->leftjoin('users', 'users.id', '=', 'skt_ormas_tbl.user_id')
                                 ->where('skt_ormas_tbl.status',3)
@@ -229,7 +229,7 @@ class SktOrmasController extends Controller
     ## Total Data Masuk
     public function total_data_masuk()
     {
-        if(Auth::user()->group==2){
+        if(Auth::user()->group==1 || Auth::user()->group==2){
             $skt_ormas = SktOrmas::
                         where(function ($query) {
                             $query->where('status',1)
@@ -250,7 +250,7 @@ class SktOrmasController extends Controller
     ## Jumlah Data Masuk
     public function jumlah_data_masuk()
     {
-        if(Auth::user()->group==2){
+        if(Auth::user()->group==1 || Auth::user()->group==2){
             $skt_ormas = SktOrmas::where('status',1)->count();
             
         }else{

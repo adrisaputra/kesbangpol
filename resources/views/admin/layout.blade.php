@@ -222,7 +222,8 @@
                             </ul>
                         </li>
                         <li class="{{ (request()->is('pengaduan*')) ? 'active' : '' }}""><a href="{{ url('pengaduan')}}"><i class="fa fa-database"></i> <span>Pengaduan</span></a></li>
-                        <li class="{{ (request()->is('foto*')) ? 'active' : '' }}""><a href="{{ url('foto')}}"><i class="fa fa-database"></i> <span>Foto</span></a></li>
+                        <li class="{{ (request()->is('berita*')) ? 'active' : '' }}""><a href="{{ url('berita')}}"><i class="fa fa-list"></i> <span>Berita</span></a></li>
+                        <li class="{{ (request()->is('dokumen*')) ? 'active' : '' }}""><a href="{{ url('dokumen')}}"><i class="fa fa-database"></i> <span>Dokumen</span></a></li>
                         @if(Auth::user()->group==1)
                         <li class="header">PENGATURAN</li>
                         <li class="{{ (request()->is('slider*')) ? 'active' : '' }}""><a href="{{ url('slider')}}"><i class="fa fa-user"></i> <span>Slider</span></a></li>

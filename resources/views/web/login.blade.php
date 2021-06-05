@@ -31,7 +31,7 @@
 						
             @if ($message = Session::get('status'))
             <div class="col-md-8 offset-2 form-group">
-              <p class="alert text-center" style="color: #ffffff;background-color: #d41e10;border-color: #f44336;">
+						  <p class="alert text-center" style="color: #ffffff;background-color: #4caf50;border-color: #d6e9c6;">
                 {{ $message }}
               </p>
             </div>

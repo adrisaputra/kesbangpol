@@ -30,7 +30,7 @@ class RegistrasiController extends Controller
         $input['no_hp'] = $request->no_hp;
         $input['password'] = Hash::make($request->password);
         $input['group'] = 7;
-        $input['status'] = 0;
+        $input['status'] = 1;
         
         if($request->file('foto_ktp')){
             $input['foto_ktp'] = time().'.'.$request->foto_ktp->getClientOriginalExtension();
@@ -39,7 +39,7 @@ class RegistrasiController extends Controller
         
         User::create($input);
 
-		return redirect('/login_w')->with('status','Menunggu Konfirmasi Admin !');
+		return redirect('/login_w')->with('status','Registrasi Berhasil, silahkan login !');
 
     }
 
